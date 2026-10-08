@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organiser — Campus Life Planner</title>
+    <link rel="stylesheet" href="styles/organizer.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <h1>Organiser workspace</h1>
+        <p>Manage campus events in this browser.</p>
+    </header>
+
+    <nav aria-label="Main navigation">
+        <a href="index.html">Student view</a>
+        <a href="#add-event">Add event</a>
+        <a href="#manage-events">Manage events</a>
+    </nav>
+
+    <main id="main-content" tabindex="-1">
+        <section id="add-event">
+            <h2>Add event</h2>
+            <p>Enter the details of a campus event.</p>
+
+            <form id="event-form">
+                <div class="form-field">
+                    <label for="event-title">Event title (required)</label>
+                    <input type="text" id="event-title" name="title" required maxlength="120">
+                </div>
+
+                <div class="form-field">
+                    <label for="event-date">Event date (required)</label>
+                    <input type="date" id="event-date" name="dueDate" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="event-duration">Duration in minutes (required)</label>
+                    <input type="text" id="event-duration" name="duration" inputmode="decimal"
+                        aria-describedby="duration-help" required>
+                    <small id="duration-help">
+                        Use minutes, for example 90 or 45.50.
+                    </small>
+                </div>
+
+                <button type="submit">Save event</button>
+            </form>
+
+        </section>
+
+        <section id="manage-events">
+            <h2>Manage events</h2>
+            <p>Review, edit, or delete your events.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Prototype: organiser access is not authenticated.</p>
+    </footer>
+</body>
+
+</html>
