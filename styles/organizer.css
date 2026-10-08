@@ -1,0 +1,12 @@
+/* Organiser page styles, separated from the student discovery page. */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; line-height: 1.6; color: #172b4d; background: #f5f7fa; }
+header, nav, main, footer { padding: 1rem; max-width: 1100px; margin-inline: auto; }
+section { padding: 1.25rem; margin-bottom: 1rem; background: white; border: 1px solid #d5dce5; border-radius: 0.5rem; }
+nav { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+a { color: #002e6d; }
+:focus-visible { outline: 1px solid #002e6d; outline-offset: 4px; }
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+input, button { font: inherit; padding: 0.75rem; }
+.skip-link { position: absolute; top: 0.5rem; left: 0.5rem; background: #002e6d; color: white; padding: 0.75rem; transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }

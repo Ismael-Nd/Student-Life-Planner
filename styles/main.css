@@ -1,0 +1,843 @@
+/* Layout inspiration: https://luma.com/ and https://luma.com/discover.
+   ALU colours retained: navy #002e6d and red #d00d2d.
+   Full posters use intrinsic height, without cropping. */
+.student-page {
+    --navy: #002e6d;
+    --red: #d00d2d;
+    --text: #172b4d;
+    --muted: #536176;
+    --border: #dce1e8;
+    position: relative;
+    isolation: isolate;
+    margin: 0;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    line-height: 1.6;
+    background: radial-gradient(ellipse at 50% 0, #dce3ef 0, transparent 650px), #e9edf2;
+    color: var(--text);
+}
+
+.student-page *,
+.student-page *::before,
+.student-page *::after {
+    box-sizing: border-box;
+}
+
+.student-page :focus-visible {
+    outline: 1px solid var(--navy);
+    outline-offset: 4px;
+}
+
+.student-page header :focus-visible {
+    outline-color: white;
+}
+
+.student-page a {
+    color: var(--navy);
+    text-underline-offset: 4px;
+}
+
+.student-page a:hover {
+    color: var(--red);
+}
+
+.student-page h1,
+.student-page h2,
+.student-page h3 {
+    line-height: 1.2;
+}
+
+.student-page .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.student-page .skip-link {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 10;
+    padding: 0.75rem 1rem;
+    background: var(--navy);
+    color: white;
+    transform: translateY(-200%);
+}
+
+.student-page .skip-link:focus {
+    transform: translateY(0);
+}
+
+.student-page header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1rem;
+    background: var(--navy);
+    color: white;
+    border-bottom: 1px solid #002e6d12;
+}
+
+.student-page .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.student-page .logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.student-page .logo h1 {
+    margin: 0;
+    font-size: 1.1rem;
+    max-width: 19ch;
+}
+
+.student-page nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.student-page nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 12px;
+    color: white;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    text-decoration: none;
+    transition: background-color 180ms ease;
+}
+
+.student-page nav a:hover,
+.student-page nav a:focus-visible {
+    background: var(--red);
+    color: white;
+}
+
+.student-page nav a:last-child {
+    border: 1px solid #ffffff50;
+    border-radius: 999px;
+    padding-inline: 16px;
+}
+
+.student-page main,
+.student-page footer {
+    max-width: 1040px;
+    margin-inline: auto;
+    padding: 1.25rem 1rem;
+}
+
+.student-page section {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    scroll-margin-top: 1rem;
+}
+
+.student-page .main-topbar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.student-page .main-topbar h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: -0.03em;
+}
+
+.student-page .search-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.student-page .search {
+    position: relative;
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+.student-page .filters {
+    position: relative;
+    flex: 1 1 170px;
+}
+
+.student-page .search input,
+.student-page .filters select {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: white;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.85rem;
+}
+
+.student-page .search input {
+    padding: 12px 16px 12px 44px;
+}
+
+.student-page .search input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+.student-page .filters select {
+    appearance: none;
+    padding: 12px 44px 12px 16px;
+    cursor: pointer;
+}
+
+.student-page .search-icon,
+.student-page .select-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    color: var(--navy);
+}
+
+.student-page .search-icon {
+    left: 14px;
+}
+
+.student-page .select-icon {
+    right: 14px;
+}
+
+.student-page #dashboard {
+    padding: 0;
+    margin-bottom: 3rem;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+}
+
+.student-page .recommended {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px #002e6d06;
+}
+
+.student-page .recommended-image {
+    min-width: 0;
+    align-self: flex-start;
+    overflow: hidden;
+    border-radius: 16px;
+    width: 100%;
+}
+
+.student-page .recommended-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.student-page .recommended-description {
+    padding: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.student-page .recommended-description h3 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: -0.03em;
+    color: var(--navy);
+}
+
+.student-page .recommended-description>p {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+}
+
+.student-page .recommended-description dl {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0 1rem;
+    margin: 0;
+}
+
+.student-page .recommended-description dt,
+.student-page .recommended-description dd {
+    margin: 0;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+
+.student-page .recommended-description dt {
+    color: var(--muted);
+}
+
+.student-page .recommended-description dd {
+    font-weight: 600;
+}
+
+.student-page .event-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.student-page .button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.75rem;
+    min-height: 48px;
+    padding: 14px 24px;
+    border: 1px solid var(--red);
+    border-radius: 10px;
+    background: var(--red);
+    color: white;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 180ms ease;
+}
+
+.student-page .button-primary:hover {
+    background: #b30b27;
+}
+
+.student-page .bookmark-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--navy);
+    border-radius: 10px;
+    background: white;
+    color: var(--navy);
+    cursor: pointer;
+}
+
+.student-page .bookmark-button svg {
+    width: 22px;
+    height: 22px;
+}
+
+.student-page .bookmark-button:hover {
+    background: #edf2f8;
+}
+
+.student-page .bookmark-button[aria-pressed='true'] svg {
+    fill: currentColor;
+}
+
+.student-page .recommended-description .action-status {
+    font-size: 0.8rem;
+    margin: 0.75rem 0 0;
+}
+
+.student-page .action-status:empty {
+    display: none;
+}
+
+.student-page .event-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.student-page .event-card {
+    flex: 0 1 100%;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: white;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.student-page .event-card h3 {
+    margin-top: 0;
+}
+
+
+
+.student-page footer {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+
+.student-page section.welcome {
+    background: transparent;
+    border: 0;
+    padding: 2rem 0 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.student-page .eyebrow {
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin: 0 0 1rem;
+}
+
+.student-page .welcome h2 {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    line-height: 1.06;
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    margin: 0 0 1.25rem;
+    color: var(--navy);
+}
+
+.student-page .welcome h2 span {
+    color: var(--red);
+}
+
+.student-page .welcome>p:not(.eyebrow) {
+    max-width: 48ch;
+    color: var(--muted);
+    font-size: 1rem;
+    margin: 0 0 1.5rem;
+}
+
+.student-page .welcome-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.student-page a.button-primary,
+.student-page a.button-primary:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.student-page .text-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.student-page .event-card:hover {
+    border-color: #b9c8df;
+    box-shadow: 0 4px 16px #002e6d08;
+}
+
+.student-page #events {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    margin-bottom: 3rem;
+}
+
+.student-page #events>p {
+    color: var(--muted);
+}
+
+.student-page .event-card h3 {
+    color: var(--navy);
+}
+
+.student-page::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: linear-gradient(#002e6d18 1px, transparent 1px), linear-gradient(90deg, #002e6d18 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(115deg, #000 0%, #0003 35%, transparent 55%, #0008 100%);
+    opacity: 0.5;
+}
+
+/* Decorative layers sit behind content and never intercept clicks. */
+.student-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url('../assets/noise.svg');
+    background-repeat: repeat;
+    opacity: 0.045;
+}
+
+.student-page section.welcome {
+    position: relative;
+    isolation: isolate;
+}
+
+
+.student-page footer {
+    position: relative;
+    isolation: isolate;
+}
+
+.student-page footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(#d00d2d40 1px, transparent 1px);
+    background-size: 14px 14px;
+    mask-image: linear-gradient(90deg, transparent 35%, black);
+    opacity: 0.3;
+}
+
+.student-page .event-cover {
+    display: block;
+    width: 100%;
+    height: 155px;
+    object-fit: cover;
+}
+
+.student-page .event-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem;
+}
+
+.student-page .event-tag {
+    align-self: flex-start;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--navy);
+    background: #002e6d0a;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+}
+
+.student-page .event-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+.student-page .event-summary {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 1rem;
+}
+
+.student-page .event-meta {
+    font-size: 0.8rem;
+    margin: auto 0 1rem;
+    color: var(--muted);
+}
+
+.student-page .card-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+}
+
+.student-page .card-actions .button-primary,
+.student-page .card-actions .bookmark-button {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    padding: 12px;
+    height: auto;
+    min-height: 46px;
+    gap: 0.5rem;
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.student-page .card-actions .button-primary {
+    flex: 1 1 85%;
+}
+
+.student-page .card-actions .bookmark-button {
+    flex: 0 0 15%;
+    min-width: 44px;
+    padding: 8px;
+}
+
+.student-page .card-actions .bookmark-button svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+
+
+.student-page #events .search-filter {
+    width: 100%;
+    margin: 1.25rem 0 0.75rem;
+}
+
+.student-page #events .filters {
+    flex: 1 1 155px;
+}
+
+.student-page #events .search {
+    flex: 2 1 220px;
+}
+
+.student-page .event-card[hidden] {
+    display: none;
+}
+
+@media (min-width: 360px) {
+    .student-page nav {
+        gap: 0.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .student-page main {
+        padding: 2rem 1.5rem;
+    }
+
+    .student-page .recommended {
+        flex-direction: row;
+    }
+
+    .student-page .recommended-image {
+        flex: 0 0 42%;
+        width: 42%;
+    }
+
+    .student-page .recommended-description {
+        flex: 1;
+        padding: 0;
+    }
+
+    .student-page .event-card {
+        flex-basis: calc((100% - 1rem) / 2);
+    }
+
+    .student-page .filters {
+        flex: 0 1 190px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .student-page .event-card {
+        flex-basis: calc((100% - 2rem) / 3);
+    }
+
+    .student-page header {
+        justify-content: space-between;
+        padding: 1.25rem max(1.5rem, calc((100vw - 992px) / 2));
+    }
+
+    .student-page .main-topbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .student-page .search-filter {
+        width: 490px;
+        flex-wrap: nowrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .student-page nav a,
+    .student-page .button-primary,
+    .student-page .event-card {
+        transition: none;
+    }
+}
+
+/* Saved events, organiser profiles, About, and the navy footer. */
+.student-page #my-plan,
+.student-page #organizers {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    margin-bottom: 3rem;
+}
+
+.student-page #saved-empty {
+    color: var(--muted);
+}
+
+.student-page #saved-empty[hidden] {
+    display: none;
+}
+
+.student-page .organizer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.student-page .organizer-profile {
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    background: #ffffffc9;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.student-page .organizer-profile img {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+}
+
+.student-page .organizer-profile h3 {
+    margin: 1rem 0 0.5rem;
+    font-size: 0.95rem;
+}
+
+.student-page .organizer-profile p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.student-page #about {
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.student-page #about h2 {
+    max-width: 22ch;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--navy);
+}
+
+.student-page .about-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.student-page .about-columns>div {
+    flex: 1 1 280px;
+    min-width: 0;
+}
+
+.student-page .about-columns p {
+    color: var(--muted);
+}
+
+.student-page .about-columns h3 {
+    margin-top: 1rem;
+}
+
+.student-page .contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    overflow-wrap: anywhere;
+}
+
+.student-page .prototype-note {
+    margin: 1.5rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.student-page footer {
+    max-width: none;
+    background: var(--navy);
+    color: white;
+    margin: 0;
+    padding: 2.5rem 1rem 1.25rem;
+}
+
+.student-page footer::before {
+    content: none;
+}
+
+.student-page .footer-content {
+    max-width: 992px;
+    margin-inline: auto;
+}
+
+.student-page .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.student-page .footer-brand img {
+    object-fit: contain;
+}
+
+.student-page .footer-brand strong {
+    font-size: 1rem;
+}
+
+.student-page .footer-brand p {
+    margin: 0.25rem 0 0;
+    color: #dae4f2;
+}
+
+.student-page footer a {
+    color: white;
+}
+
+.student-page footer a:hover {
+    color: white;
+}
+
+.student-page footer :focus-visible {
+    outline-color: white;
+}
+
+.student-page .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #ffffff30;
+    color: #dae4f2;
+    font-size: 0.75rem;
+}

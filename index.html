@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life Planner</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+</head>
+
+<body class="student-page">
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+
+    <header>
+        <div class="logo">
+            <img src="White_WOName.png" alt="" srcset="">
+            <h1>Campus Life Planner</h1>
+        </div>
+        <nav aria-label="Main navigation">
+            <a href="#welcome-heading">Home</a>
+            <a href="#events">Discover</a>
+            <a href="#my-plan">My Events</a>
+            <a href="#about">About</a>
+            <a href="#organizers">Organizers</a>
+            <a href="organizer.html">Admin View</a>
+        </nav>
+    </header>
+
+
+    <main id="main-content" class="main" tabindex="-1">
+        <section class="welcome" aria-labelledby="welcome-heading">
+            <p class="eyebrow">ALU CAMPUS LIFE</p>
+            <h2 id="welcome-heading">Your next campus<br><span>memory starts here.</span></h2>
+            <p>Find your people, discover something new, and make room for the moments that matter.</p>
+            <div class="welcome-actions">
+                <a class="button-primary" href="#events">Discover events <span aria-hidden="true">↗</span></a>
+                <a class="text-link" href="organizer.html">Host an event <span aria-hidden="true">→</span></a>
+            </div>
+        </section>
+        <div class="main-topbar">
+            <h2 id="recommended-heading">Recommended</h2>
+        </div>
+
+        <section id="dashboard" aria-labelledby="recommended-heading">
+            <!-- <p>See your campus activity overview and time budget.</p> -->
+            <div class="recommended">
+                <div class="recommended-image">
+                    <img src="October Edition Final.jpg" alt="" srcset="">
+                </div>
+                <div class="recommended-description">
+                    <h3>Campus Careers Fair</h3>
+                    <p>Meet employers and explore internship opportunities.</p>
+
+                    <dl>
+                        <dt>Date</dt>
+                        <dd><time datetime="2026-10-14">14 October 2026</time></dd>
+
+                        <dt>Duration</dt>
+                        <dd>120 minutes</dd>
+
+                        <dt>Tag</dt>
+                        <dd>Careers</dd>
+
+                        <dt>Venue</dt>
+                        <dd>Student Centre</dd>
+                    </dl>
+                    <div class="event-actions">
+                        <button class="button-primary" type="button" id="recommended-rsvp">RSVP <span
+                                aria-hidden="true">↗</span></button>
+                        <button class="bookmark-button" type="button" id="recommended-bookmark" data-event-id="event-1"
+                            aria-label="Save Campus Careers Fair" aria-pressed="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                aria-hidden="true">
+                                <path d="M6 3h12v18l-6-4-6 4V3Z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="action-status" id="recommended-status" role="status"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="events">
+
+            <h2>Discover events</h2>
+            <p>Discover upcoming activities.</p>
+            <div class="search-filter">
+                <div class="search">
+                    <label class="visually-hidden" for="event-search">Search events</label><input type="text"
+                        id="event-search" placeholder="Search an event">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5" />
+                        <path d="m16 16 5 5" />
+                    </svg>
+                </div>
+                <div class="filters">
+                    <label class="visually-hidden" for="categories">Event category</label><select name="categories"
+                        id="categories">
+                        <option value="">All categories</option>
+                        <option value="Masterclass">Masterclass</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Careers">Careers</option>
+                        <option value="Social">Social</option>
+                        <option value="Sports">Sports</option>
+                    </select><svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6" />
+                    </svg>
+                </div>
+                <div class="filters sort-control">
+                    <label class="visually-hidden" for="event-sort">Sort events</label>
+                    <select id="event-sort">
+                        <option value="trending">Trending</option>
+                        <option value="popular">Most popular</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                    <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        aria-hidden="true">
+                        <path d="m6 9 6 6 6-6" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="event-list">
+                <article class="event-card" data-event-id="event-1" data-organizer="careers" data-category="Careers"
+                    data-popularity="84" data-trending="18" data-created="2026-10-05T12:00:00Z">
+                    <img class="event-cover" src="October Edition Final.jpg" alt="" loading="lazy">
+                    <div class="event-card-content">
+                        <span class="event-tag">Careers</span>
+                        <h3>Campus Careers Fair</h3>
+                        <p class="event-summary">Meet employers and explore internship opportunities.</p>
+                        <p class="event-meta"><time datetime="2026-10-14">14 October</time> · 120 min<br>Student Centre
+                        </p>
+                        <div class="card-actions">
+                            <button type="button" class="button-primary card-rsvp">RSVP <span
+                                    aria-hidden="true">↗</span></button>
+                            <button type="button" class="bookmark-button card-save"
+                                aria-label="Save Campus Careers Fair" aria-pressed="false"><svg viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
+                                </svg></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="event-card" data-event-id="event-2" data-organizer="careers" data-category="Workshop"
+                    data-popularity="120" data-trending="9" data-created="2026-10-02T12:00:00Z">
+                    <img class="event-cover" src="October Edition Final.jpg" alt="" loading="lazy">
+                    <div class="event-card-content">
+                        <span class="event-tag">Workshop</span>
+                        <h3>CV Clinic</h3>
+                        <p class="event-summary">Build a stronger CV with practical feedback from peers.</p>
+                        <p class="event-meta"><time datetime="2026-10-14">14 October</time> · 120 min<br>Student Centre
+                        </p>
+                        <div class="card-actions">
+                            <button type="button" class="button-primary card-rsvp">RSVP <span
+                                    aria-hidden="true">↗</span></button>
+                            <button type="button" class="bookmark-button card-save" aria-label="Save CV Clinic"
+                                aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.8" aria-hidden="true">
+                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
+                                </svg></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="event-card" data-event-id="event-3" data-organizer="council" data-category="Social"
+                    data-popularity="35" data-trending="24" data-created="2026-10-07T12:00:00Z">
+                    <img class="event-cover" src="October Edition Final.jpg" alt="" loading="lazy">
+                    <div class="event-card-content">
+                        <span class="event-tag">Social</span>
+                        <h3>Student Community Mixer</h3>
+                        <p class="event-summary">Meet fellow students and make new campus connections.</p>
+                        <p class="event-meta"><time datetime="2026-10-14">14 October</time> · 120 min<br>Student Centre
+                        </p>
+                        <div class="card-actions">
+                            <button type="button" class="button-primary card-rsvp">RSVP <span
+                                    aria-hidden="true">↗</span></button>
+                            <button type="button" class="bookmark-button card-save"
+                                aria-label="Save Student Community Mixer" aria-pressed="false"><svg viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
+                                </svg></button>
+                        </div>
+                    </div>
+                </article>
+                <article class="event-card" data-event-id="event-4" data-organizer="sports" data-category="Sports"
+                    data-popularity="62" data-trending="6" data-created="2026-10-01T12:00:00Z">
+                    <img class="event-cover" src="October Edition Final.jpg" alt="" loading="lazy">
+                    <div class="event-card-content">
+                        <span class="event-tag">Sports</span>
+                        <h3>Campus Football Session</h3>
+                        <p class="event-summary">Take a study break and join a friendly afternoon game.</p>
+                        <p class="event-meta"><time datetime="2026-10-14">14 October</time> · 120 min<br>Student Centre
+                        </p>
+                        <div class="card-actions">
+                            <button type="button" class="button-primary card-rsvp">RSVP <span
+                                    aria-hidden="true">↗</span></button>
+                            <button type="button" class="bookmark-button card-save"
+                                aria-label="Save Campus Football Session" aria-pressed="false"><svg viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
+                                </svg></button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section id="my-plan" aria-labelledby="my-events-heading">
+            <h2 id="my-events-heading">My Events</h2>
+            <p id="saved-empty">No bookmarked events yet. Use the bookmark icon on an event to save it here.</p>
+            <div id="saved-events" class="event-list"></div>
+        </section>
+
+        <section id="organizers" aria-labelledby="organizers-heading">
+            <h2 id="organizers-heading">Organizers</h2>
+            <div class="organizer-list" id="organizer-profiles"></div>
+        </section>
+
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">Campus life, all in one place.</h2>
+            <div class="about-columns">
+                <div>
+                    <p>Campus Life Planner helps students discover activities, find their community, and keep the events
+                        they care about together. Less searching through emails, more taking part in campus life.</p>
+                    <p>Discover an event, bookmark it to My Events, and use RSVP to access registration when the
+                        organiser provides a link.</p>
+                </div>
+                <div>
+                    <h3>Built by Ismail</h3>
+                    <p>A student project for the Building Responsive UI assignment, made with vanilla HTML, CSS, and
+                        JavaScript.</p>
+                    <div class="contact-links"><a href="https://github.com/Ismail-Nd" target="_blank"
+                            rel="noopener noreferrer">GitHub ↗</a><a
+                            href="mailto:n.ismael@alustudent.com">n.ismael@alustudent.com</a></div>
+                </div>
+            </div>
+            <p class="prototype-note">This is a student prototype with sample events and organiser profiles. Bookmarks
+                are saved in this browser; they do not register you for an event. Shared campus data and organiser
+                accounts require a backend. This project is not an official ALU service.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><img src="White_WOName.png" alt="" width="48" height="48">
+                <div><strong>Campus Life Planner</strong>
+                    <p>Find your people. Make your plans.</p>
+                </div>
+            </div>
+            <nav aria-label="Footer navigation"><a href="#events">Discover</a><a href="#my-plan">My Events</a><a
+                    href="#organizers">Organizers</a><a href="#about">About</a><a href="organizer.html">Host an
+                    event</a></nav>
+            <div class="footer-bottom"><span>© 2026 Campus Life Planner · Student project</span><a
+                    href="https://github.com/Ismail-Nd">Built by Ismail ↗</a></div>
+        </div>
+    </footer>
+
+    <p id="ui-status" class="visually-hidden" role="status"></p>
+    <script type="module" src="scripts/student-ui.js"></script>
+</body>
+
+</html>
