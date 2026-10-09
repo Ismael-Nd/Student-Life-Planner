@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizers — Campus Life Planner</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+</head>
+
+<body class="student-page" data-page="organizers"><a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+        <div class="logo"><img src="White_WOName.png" alt="" width="40" height="40">
+            <h1>Campus Life Planner</h1>
+        </div>
+        <nav aria-label="Main navigation"><a href="index.html">Discover</a><a href="my-events.html">My Events</a><a
+                href="organizers.html" aria-current="page">Organizers</a><a href="index.html#about">About</a><a
+                href="login.html">Logout</a></nav>
+    </header>
+    <main id="main-content" tabindex="-1">
+        <div class="page-topbar">
+            <div>
+                <p class="eyebrow">MEET YOUR HOSTS</p>
+                <h2 id="organizers-heading">Organizers</h2>
+            </div>
+        </div>
+        <section aria-labelledby="organizers-heading">
+            <div id="organizer-profiles" class="organizer-list">
+                <article class="organizer-profile"><img src="assets/careers-logo.svg" alt="" width="72" height="72">
+                    <h3>Careers Office</h3>
+                    <p aria-label="3 events organised">3</p>
+                </article>
+                <article class="organizer-profile"><img src="assets/council-logo.svg" alt="" width="72" height="72">
+                    <h3>Student Council</h3>
+                    <p aria-label="3 events organised">3</p>
+                </article>
+                <article class="organizer-profile"><img src="assets/sports-logo.svg" alt="" width="72" height="72">
+                    <h3>Campus Sports</h3>
+                    <p aria-label="3 events organised">3</p>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><img src="White_WOName.png" alt="" width="40" height="40">
+                <div><strong>Campus Life Planner</strong>
+                    <p>Find your people. Make your plans.</p>
+                </div>
+            </div>
+            <nav aria-label="Footer navigation"><a href="index.html">Discover</a><a href="my-events.html">My
+                    Events</a><a href="organizers.html" aria-current="page">Organizers</a><a
+                    href="index.html#about">About</a></nav>
+            <div class="footer-bottom"><span>© 2026 Campus Life Planner · Student project</span><a
+                    href="https://github.com/Ismail-Nd">Built by Ismail ↗</a></div>
+        </div>
+    </footer>
+    <dialog id="event-dialog" aria-labelledby="dialog-title">
+        <div class="dialog-top"><span>Event details</span><button type="button" id="dialog-close" class="icon-button"
+                aria-label="Close event details">×</button></div>
+        <div id="dialog-content">
+            <h2 id="dialog-title">Event details</h2>
+            <p>Full event description and registration information.</p>
+        </div>
+        <p id="dialog-status" role="status"></p>
+    </dialog>
+    <p id="ui-status" class="visually-hidden" role="status"></p>
+</body>
+
+</html>

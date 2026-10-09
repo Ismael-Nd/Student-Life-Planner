@@ -4,62 +4,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organiser — Campus Life Planner</title>
+    <title>Organizer dashboard — Campus Life Planner</title>
+    <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/organizer.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
 </head>
 
-<body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
+<body class="student-page admin-page"><a class="skip-link" href="#main-content">Skip to main content</a>
     <header>
-        <h1>Organiser workspace</h1>
-        <p>Manage campus events in this browser.</p>
+        <div class="logo"><img src="White_WOName.png" alt="" width="40" height="40">
+            <h1>Campus Life Planner</h1>
+        </div>
+        <nav aria-label="Organizer navigation"><a href="organizer.html" aria-current="page">Dashboard</a><a
+                href="organizer-login.html">Logout</a></nav>
     </header>
-
-    <nav aria-label="Main navigation">
-        <a href="index.html">Student view</a>
-        <a href="#add-event">Add event</a>
-        <a href="#manage-events">Manage events</a>
-    </nav>
-
     <main id="main-content" tabindex="-1">
-        <section id="add-event">
-            <h2>Add event</h2>
-            <p>Enter the details of a campus event.</p>
+        <div class="page-topbar">
+            <div>
+                <p class="eyebrow">ORGANIZER WORKSPACE · CAREERS OFFICE</p>
+                <h2>Your events, in one place.</h2>
+                <p class="muted">Manage your listings and see who is joining.</p>
+            </div><button type="button" class="button-primary" popovertarget="create-event">Create event +</button>
+        </div>
 
-            <form id="event-form">
-                <div class="form-field">
-                    <label for="event-title">Event title (required)</label>
-                    <input type="text" id="event-title" name="title" required maxlength="120">
-                </div>
-
-                <div class="form-field">
-                    <label for="event-date">Event date (required)</label>
-                    <input type="date" id="event-date" name="dueDate" required>
-                </div>
-
-                <div class="form-field">
-                    <label for="event-duration">Duration in minutes (required)</label>
-                    <input type="text" id="event-duration" name="duration" inputmode="decimal"
-                        aria-describedby="duration-help" required>
-                    <small id="duration-help">
-                        Use minutes, for example 90 or 45.50.
-                    </small>
-                </div>
-
-                <button type="submit">Save event</button>
+        <section class="admin-stats" aria-label="Your event statistics">
+            <article><span>Listed events</span><strong>3</strong></article>
+            <article><span>Total RSVPs</span><strong>74</strong></article>
+            <article><span>Total event time</span><strong>330 <small>min</small></strong></article>
+        </section>
+        <section id="manage-events" aria-labelledby="listings-heading">
+            <div class="section-heading">
+                <h2 id="listings-heading">Your event listings</h2><span class="muted small">3 events</span>
+            </div>
+            <div class="events-table-wrap" tabindex="0" role="region"
+                aria-label="Event listings, scroll horizontally on small screens">
+                <table class="events-table">
+                    <caption class="visually-hidden">Careers Office event listings</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Venue</th>
+                            <th scope="col">RSVPs</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Campus Careers Fair</th>
+                            <td><span class="event-tag">Careers</span></td>
+                            <td><time datetime="2026-10-14">14 Oct 2026</time></td>
+                            <td><time>14:00</time><small>120 min</small></td>
+                            <td>Student Centre</td>
+                            <td class="rsvp-cell">32</td>
+                            <td>
+                                <div class="table-actions"><button type="button" class="table-action attendees-action"
+                                        popovertarget="attendees-1" aria-label="View attendees for Campus Careers Fair"
+                                        title="View attendees for Campus Careers Fair"><svg viewBox="0 0 24 24"
+                                            fill="none" aria-hidden="true">
+                                            <path
+                                                d="M18.4995 20.5C18.2663 17.5685 15.8417 15.2477 12.808 15.0521L11.9995 15C11.7107 15.0076 11.4416 15.0178 11.1877 15.0298C8.18075 15.1723 5.7304 17.5974 5.49951 20.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M15.2495 9.25C15.2495 11.0449 13.7944 12.5 11.9995 12.5C10.2046 12.5 8.74952 11.0449 8.74952 9.25C8.74952 7.45507 10.2046 6 11.9995 6C13.7944 6 15.2495 7.45507 15.2495 9.25Z"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M5.50249 8.5C5.17908 7.99485 4.99158 7.39432 4.99158 6.75C4.99158 4.95507 6.44665 3.5 8.24157 3.5C8.68752 3.5 9.1125 3.58982 9.49939 3.75235"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M18.4963 8.5C18.8197 7.99485 19.0072 7.39432 19.0072 6.75C19.0072 4.95507 17.5521 3.5 15.7572 3.5C15.3113 3.5 14.8863 3.58982 14.4994 3.75235"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M22.0007 17.9996C21.8208 15.7374 19.9995 13.5 17.9995 13"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M1.99927 17.9996C2.17923 15.7374 4.00049 13.5 6.00049 13"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                        </svg></button><button type="button" class="table-action edit-action"
+                                        popovertarget="edit-1" aria-label="Edit Campus Careers Fair"
+                                        title="Edit Campus Careers Fair"><svg viewBox="0 0 24 24" fill="none"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M15.2141 5.98239L16.6158 4.58063C17.39 3.80646 18.6452 3.80646 19.4194 4.58063C20.1935 5.3548 20.1935 6.60998 19.4194 7.38415L18.0176 8.78591M15.2141 5.98239L6.98023 14.2163C5.93493 15.2616 5.41226 15.7842 5.05637 16.4211C4.70047 17.058 4.3424 18.5619 4 20C5.43809 19.6576 6.94199 19.2995 7.57889 18.9436C8.21579 18.5877 8.73844 18.0651 9.78375 17.0198L18.0176 8.78591M15.2141 5.98239L18.0176 8.78591"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M11 20H17" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                        </svg></button><button type="button" class="table-action delete-action"
+                                        popovertarget="delete-1" aria-label="Delete Campus Careers Fair"
+                                        title="Delete Campus Careers Fair"><svg viewBox="0 0 24 24" fill="none"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-width="1.5" />
+                                            <path
+                                                d="M3 5.5H21M16.0557 5.5L15.3731 4.09173C14.9196 3.15626 14.6928 2.68852 14.3017 2.39681C14.215 2.3321 14.1231 2.27454 14.027 2.2247C13.5939 2 13.0741 2 12.0345 2C10.9688 2 10.436 2 9.99568 2.23412C9.8981 2.28601 9.80498 2.3459 9.71729 2.41317C9.32164 2.7167 9.10063 3.20155 8.65861 4.17126L8.05292 5.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-width="1.5" />
+                                            <path d="M9.5 16.5L9.5 10.5" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                            <path d="M14.5 16.5L14.5 10.5" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                        </svg></button></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">CV Clinic</th>
+                            <td><span class="event-tag">Careers</span></td>
+                            <td><time datetime="2026-10-12">12 Oct 2026</time></td>
+                            <td><time>10:00</time><small>60 min</small></td>
+                            <td>Learning Hub</td>
+                            <td class="rsvp-cell">18</td>
+                            <td>
+                                <div class="table-actions"><button type="button" class="table-action attendees-action"
+                                        popovertarget="attendees-2" aria-label="View attendees for CV Clinic"
+                                        title="View attendees for CV Clinic"><svg viewBox="0 0 24 24" fill="none"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M18.4995 20.5C18.2663 17.5685 15.8417 15.2477 12.808 15.0521L11.9995 15C11.7107 15.0076 11.4416 15.0178 11.1877 15.0298C8.18075 15.1723 5.7304 17.5974 5.49951 20.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M15.2495 9.25C15.2495 11.0449 13.7944 12.5 11.9995 12.5C10.2046 12.5 8.74952 11.0449 8.74952 9.25C8.74952 7.45507 10.2046 6 11.9995 6C13.7944 6 15.2495 7.45507 15.2495 9.25Z"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M5.50249 8.5C5.17908 7.99485 4.99158 7.39432 4.99158 6.75C4.99158 4.95507 6.44665 3.5 8.24157 3.5C8.68752 3.5 9.1125 3.58982 9.49939 3.75235"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M18.4963 8.5C18.8197 7.99485 19.0072 7.39432 19.0072 6.75C19.0072 4.95507 17.5521 3.5 15.7572 3.5C15.3113 3.5 14.8863 3.58982 14.4994 3.75235"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M22.0007 17.9996C21.8208 15.7374 19.9995 13.5 17.9995 13"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M1.99927 17.9996C2.17923 15.7374 4.00049 13.5 6.00049 13"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                        </svg></button><button type="button" class="table-action edit-action"
+                                        popovertarget="edit-2" aria-label="Edit CV Clinic" title="Edit CV Clinic"><svg
+                                            viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                            <path
+                                                d="M15.2141 5.98239L16.6158 4.58063C17.39 3.80646 18.6452 3.80646 19.4194 4.58063C20.1935 5.3548 20.1935 6.60998 19.4194 7.38415L18.0176 8.78591M15.2141 5.98239L6.98023 14.2163C5.93493 15.2616 5.41226 15.7842 5.05637 16.4211C4.70047 17.058 4.3424 18.5619 4 20C5.43809 19.6576 6.94199 19.2995 7.57889 18.9436C8.21579 18.5877 8.73844 18.0651 9.78375 17.0198L18.0176 8.78591M15.2141 5.98239L18.0176 8.78591"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M11 20H17" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                        </svg></button><button type="button" class="table-action delete-action"
+                                        popovertarget="delete-2" aria-label="Delete CV Clinic"
+                                        title="Delete CV Clinic"><svg viewBox="0 0 24 24" fill="none"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-width="1.5" />
+                                            <path
+                                                d="M3 5.5H21M16.0557 5.5L15.3731 4.09173C14.9196 3.15626 14.6928 2.68852 14.3017 2.39681C14.215 2.3321 14.1231 2.27454 14.027 2.2247C13.5939 2 13.0741 2 12.0345 2C10.9688 2 10.436 2 9.99568 2.23412C9.8981 2.28601 9.80498 2.3459 9.71729 2.41317C9.32164 2.7167 9.10063 3.20155 8.65861 4.17126L8.05292 5.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-width="1.5" />
+                                            <path d="M9.5 16.5L9.5 10.5" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                            <path d="M14.5 16.5L14.5 10.5" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                        </svg></button></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Founders Masterclass</th>
+                            <td><span class="event-tag">Masterclass</span></td>
+                            <td><time datetime="2026-10-21">21 Oct 2026</time></td>
+                            <td><time>15:00</time><small>150 min</small></td>
+                            <td>Auditorium</td>
+                            <td class="rsvp-cell">24</td>
+                            <td>
+                                <div class="table-actions"><button type="button" class="table-action attendees-action"
+                                        popovertarget="attendees-3" aria-label="View attendees for Founders Masterclass"
+                                        title="View attendees for Founders Masterclass"><svg viewBox="0 0 24 24"
+                                            fill="none" aria-hidden="true">
+                                            <path
+                                                d="M18.4995 20.5C18.2663 17.5685 15.8417 15.2477 12.808 15.0521L11.9995 15C11.7107 15.0076 11.4416 15.0178 11.1877 15.0298C8.18075 15.1723 5.7304 17.5974 5.49951 20.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M15.2495 9.25C15.2495 11.0449 13.7944 12.5 11.9995 12.5C10.2046 12.5 8.74952 11.0449 8.74952 9.25C8.74952 7.45507 10.2046 6 11.9995 6C13.7944 6 15.2495 7.45507 15.2495 9.25Z"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M5.50249 8.5C5.17908 7.99485 4.99158 7.39432 4.99158 6.75C4.99158 4.95507 6.44665 3.5 8.24157 3.5C8.68752 3.5 9.1125 3.58982 9.49939 3.75235"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path
+                                                d="M18.4963 8.5C18.8197 7.99485 19.0072 7.39432 19.0072 6.75C19.0072 4.95507 17.5521 3.5 15.7572 3.5C15.3113 3.5 14.8863 3.58982 14.4994 3.75235"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M22.0007 17.9996C21.8208 15.7374 19.9995 13.5 17.9995 13"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M1.99927 17.9996C2.17923 15.7374 4.00049 13.5 6.00049 13"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                        </svg></button><button type="button" class="table-action edit-action"
+                                        popovertarget="edit-3" aria-label="Edit Founders Masterclass"
+                                        title="Edit Founders Masterclass"><svg viewBox="0 0 24 24" fill="none"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M15.2141 5.98239L16.6158 4.58063C17.39 3.80646 18.6452 3.80646 19.4194 4.58063C20.1935 5.3548 20.1935 6.60998 19.4194 7.38415L18.0176 8.78591M15.2141 5.98239L6.98023 14.2163C5.93493 15.2616 5.41226 15.7842 5.05637 16.4211C4.70047 17.058 4.3424 18.5619 4 20C5.43809 19.6576 6.94199 19.2995 7.57889 18.9436C8.21579 18.5877 8.73844 18.0651 9.78375 17.0198L18.0176 8.78591M15.2141 5.98239L18.0176 8.78591"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" />
+                                            <path d="M11 20H17" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                        </svg></button><button type="button" class="table-action delete-action"
+                                        popovertarget="delete-3" aria-label="Delete Founders Masterclass"
+                                        title="Delete Founders Masterclass"><svg viewBox="0 0 24 24" fill="none"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-width="1.5" />
+                                            <path
+                                                d="M3 5.5H21M16.0557 5.5L15.3731 4.09173C14.9196 3.15626 14.6928 2.68852 14.3017 2.39681C14.215 2.3321 14.1231 2.27454 14.027 2.2247C13.5939 2 13.0741 2 12.0345 2C10.9688 2 10.436 2 9.99568 2.23412C9.8981 2.28601 9.80498 2.3459 9.71729 2.41317C9.32164 2.7167 9.10063 3.20155 8.65861 4.17126L8.05292 5.5"
+                                                stroke="currentColor" stroke-linecap="round" stroke-width="1.5" />
+                                            <path d="M9.5 16.5L9.5 10.5" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                            <path d="M14.5 16.5L14.5 10.5" stroke="currentColor" stroke-linecap="round"
+                                                stroke-width="1.5" />
+                                        </svg></button></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div id="create-event" popover class="admin-popup" role="dialog" aria-labelledby="create-event-heading">
+            <div class="popup-heading">
+                <h2 id="create-event-heading">Create event</h2><button type="button" class="table-action"
+                    popovertarget="create-event" popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24"
+                        fill="none" aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <form class="admin-form" id="create-form">
+                <div class="form-field full-field"><label for="event-title">Event title</label><input id="event-title"
+                        name="title" required maxlength="120"></div>
+                <div class="form-field"><label for="event-date">Event date</label><input type="date" id="event-date"
+                        name="dueDate" required></div>
+                <div class="form-field"><label for="event-time">Start time</label><input type="time" id="event-time"
+                        name="startTime" value="" required></div>
+                <div class="form-field"><label for="event-duration">Duration in minutes</label><input
+                        id="event-duration" name="duration" inputmode="decimal" aria-describedby="duration-help"
+                        required><small id="duration-help">For example, 90 or 45.50.</small></div>
+                <div class="form-field"><label for="event-tag">Category / tag</label><input id="event-tag" name="tag"
+                        placeholder="Careers" required></div>
+                <div class="form-field"><label for="event-venue">Venue</label><input id="event-venue" name="venue"
+                        required></div>
+                <div class="form-field"><label for="event-entry">Entry</label><select id="event-entry" name="entry">
+                        <option>Free</option>
+                        <option>Paid</option>
+                    </select></div>
+                <div class="form-field"><label for="event-url">Registration link</label><input type="url" id="event-url"
+                        name="registrationUrl" placeholder="https://"></div>
+                <div class="form-field full-field"><label for="event-description">Description</label><textarea
+                        id="event-description" name="description" rows="4" required></textarea></div>
+                <div class="full-field"><button class="button-primary" type="submit" disabled>Save event</button></div>
             </form>
-
-        </section>
-
-        <section id="manage-events">
-            <h2>Manage events</h2>
-            <p>Review, edit, or delete your events.</p>
-        </section>
+        </div>
+        <div id="edit-1" popover class="admin-popup" role="dialog" aria-labelledby="edit-1-heading">
+            <div class="popup-heading">
+                <h2 id="edit-1-heading">Edit event</h2><button type="button" class="table-action" popovertarget="edit-1"
+                    popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"
+                        aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <form class="admin-form" id="edit-form-1">
+                <div class="form-field full-field"><label for="title-1">Event title</label><input id="title-1"
+                        name="title" value="Campus Careers Fair" required maxlength="120"></div>
+                <div class="form-field"><label for="date-1">Event date</label><input type="date" id="date-1"
+                        name="dueDate" value="2026-10-14" required></div>
+                <div class="form-field"><label for="time-1">Start time</label><input type="time" id="time-1"
+                        name="startTime" value="14:00" required></div>
+                <div class="form-field"><label for="duration-1">Duration in minutes</label><input id="duration-1"
+                        name="duration" value="120" inputmode="decimal" aria-describedby="help-1" required><small
+                        id="help-1">For example, 90 or 45.50.</small></div>
+                <div class="form-field"><label for="tag-1">Category / tag</label><input id="tag-1" name="tag"
+                        value="Careers" placeholder="Careers" required></div>
+                <div class="form-field"><label for="venue-1">Venue</label><input id="venue-1" name="venue"
+                        value="Student Centre" required></div>
+                <div class="form-field"><label for="entry-1">Entry</label><select id="entry-1" name="entry">
+                        <option>Free</option>
+                        <option>Paid</option>
+                    </select></div>
+                <div class="form-field"><label for="url-1">Registration link</label><input type="url" id="url-1"
+                        name="registrationUrl" placeholder="https://"></div>
+                <div class="form-field full-field"><label for="description-1">Description</label><textarea
+                        id="description-1" name="description" rows="4" required></textarea></div>
+                <div class="full-field"><button class="button-primary" type="submit" disabled>Save event</button></div>
+            </form>
+        </div>
+        <div id="attendees-1" popover class="admin-popup" role="dialog" aria-labelledby="attendees-1-heading">
+            <div class="popup-heading">
+                <h2 id="attendees-1-heading">Campus Careers Fair · attendees</h2><button type="button"
+                    class="table-action" popovertarget="attendees-1" popovertargetaction="hide" aria-label="Close"><svg
+                        viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <p class="muted">32 RSVPs · sample attendee names</p>
+            <ul class="attendee-list">
+                <li>Amina K.</li>
+                <li>David M.</li>
+                <li>Grace N.</li>
+            </ul>
+        </div>
+        <div id="delete-1" popover class="admin-popup" role="dialog" aria-labelledby="delete-1-heading">
+            <div class="popup-heading">
+                <h2 id="delete-1-heading">Delete event?</h2><button type="button" class="table-action"
+                    popovertarget="delete-1" popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24"
+                        fill="none" aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <p>Delete <strong>Campus Careers Fair</strong>? This will remove its listing.</p>
+            <div class="popup-actions"><button type="button" class="button-secondary" popovertarget="delete-1"
+                    popovertargetaction="hide">Cancel</button><button type="button" class="delete-button"
+                    disabled>Delete event</button></div>
+        </div>
+        <div id="edit-2" popover class="admin-popup" role="dialog" aria-labelledby="edit-2-heading">
+            <div class="popup-heading">
+                <h2 id="edit-2-heading">Edit event</h2><button type="button" class="table-action" popovertarget="edit-2"
+                    popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"
+                        aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <form class="admin-form" id="edit-form-2">
+                <div class="form-field full-field"><label for="title-2">Event title</label><input id="title-2"
+                        name="title" value="CV Clinic" required maxlength="120"></div>
+                <div class="form-field"><label for="date-2">Event date</label><input type="date" id="date-2"
+                        name="dueDate" value="2026-10-12" required></div>
+                <div class="form-field"><label for="time-2">Start time</label><input type="time" id="time-2"
+                        name="startTime" value="10:00" required></div>
+                <div class="form-field"><label for="duration-2">Duration in minutes</label><input id="duration-2"
+                        name="duration" value="60" inputmode="decimal" aria-describedby="help-2" required><small
+                        id="help-2">For example, 90 or 45.50.</small></div>
+                <div class="form-field"><label for="tag-2">Category / tag</label><input id="tag-2" name="tag"
+                        value="Careers" placeholder="Careers" required></div>
+                <div class="form-field"><label for="venue-2">Venue</label><input id="venue-2" name="venue"
+                        value="Learning Hub" required></div>
+                <div class="form-field"><label for="entry-2">Entry</label><select id="entry-2" name="entry">
+                        <option>Free</option>
+                        <option>Paid</option>
+                    </select></div>
+                <div class="form-field"><label for="url-2">Registration link</label><input type="url" id="url-2"
+                        name="registrationUrl" placeholder="https://"></div>
+                <div class="form-field full-field"><label for="description-2">Description</label><textarea
+                        id="description-2" name="description" rows="4" required></textarea></div>
+                <div class="full-field"><button class="button-primary" type="submit" disabled>Save event</button></div>
+            </form>
+        </div>
+        <div id="attendees-2" popover class="admin-popup" role="dialog" aria-labelledby="attendees-2-heading">
+            <div class="popup-heading">
+                <h2 id="attendees-2-heading">CV Clinic · attendees</h2><button type="button" class="table-action"
+                    popovertarget="attendees-2" popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24"
+                        fill="none" aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <p class="muted">18 RSVPs · sample attendee names</p>
+            <ul class="attendee-list">
+                <li>Brian T.</li>
+                <li>Sarah A.</li>
+            </ul>
+        </div>
+        <div id="delete-2" popover class="admin-popup" role="dialog" aria-labelledby="delete-2-heading">
+            <div class="popup-heading">
+                <h2 id="delete-2-heading">Delete event?</h2><button type="button" class="table-action"
+                    popovertarget="delete-2" popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24"
+                        fill="none" aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <p>Delete <strong>CV Clinic</strong>? This will remove its listing.</p>
+            <div class="popup-actions"><button type="button" class="button-secondary" popovertarget="delete-2"
+                    popovertargetaction="hide">Cancel</button><button type="button" class="delete-button"
+                    disabled>Delete event</button></div>
+        </div>
+        <div id="edit-3" popover class="admin-popup" role="dialog" aria-labelledby="edit-3-heading">
+            <div class="popup-heading">
+                <h2 id="edit-3-heading">Edit event</h2><button type="button" class="table-action" popovertarget="edit-3"
+                    popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"
+                        aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <form class="admin-form" id="edit-form-3">
+                <div class="form-field full-field"><label for="title-3">Event title</label><input id="title-3"
+                        name="title" value="Founders Masterclass" required maxlength="120"></div>
+                <div class="form-field"><label for="date-3">Event date</label><input type="date" id="date-3"
+                        name="dueDate" value="2026-10-21" required></div>
+                <div class="form-field"><label for="time-3">Start time</label><input type="time" id="time-3"
+                        name="startTime" value="15:00" required></div>
+                <div class="form-field"><label for="duration-3">Duration in minutes</label><input id="duration-3"
+                        name="duration" value="150" inputmode="decimal" aria-describedby="help-3" required><small
+                        id="help-3">For example, 90 or 45.50.</small></div>
+                <div class="form-field"><label for="tag-3">Category / tag</label><input id="tag-3" name="tag"
+                        value="Masterclass" placeholder="Careers" required></div>
+                <div class="form-field"><label for="venue-3">Venue</label><input id="venue-3" name="venue"
+                        value="Auditorium" required></div>
+                <div class="form-field"><label for="entry-3">Entry</label><select id="entry-3" name="entry">
+                        <option>Free</option>
+                        <option>Paid</option>
+                    </select></div>
+                <div class="form-field"><label for="url-3">Registration link</label><input type="url" id="url-3"
+                        name="registrationUrl" placeholder="https://"></div>
+                <div class="form-field full-field"><label for="description-3">Description</label><textarea
+                        id="description-3" name="description" rows="4" required></textarea></div>
+                <div class="full-field"><button class="button-primary" type="submit" disabled>Save event</button></div>
+            </form>
+        </div>
+        <div id="attendees-3" popover class="admin-popup" role="dialog" aria-labelledby="attendees-3-heading">
+            <div class="popup-heading">
+                <h2 id="attendees-3-heading">Founders Masterclass · attendees</h2><button type="button"
+                    class="table-action" popovertarget="attendees-3" popovertargetaction="hide" aria-label="Close"><svg
+                        viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <p class="muted">24 RSVPs · sample attendee names</p>
+            <ul class="attendee-list">
+                <li>Ella P.</li>
+                <li>Kevin R.</li>
+            </ul>
+        </div>
+        <div id="delete-3" popover class="admin-popup" role="dialog" aria-labelledby="delete-3-heading">
+            <div class="popup-heading">
+                <h2 id="delete-3-heading">Delete event?</h2><button type="button" class="table-action"
+                    popovertarget="delete-3" popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24"
+                        fill="none" aria-hidden="true">
+                        <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                    </svg></button>
+            </div>
+            <p>Delete <strong>Founders Masterclass</strong>? This will remove its listing.</p>
+            <div class="popup-actions"><button type="button" class="button-secondary" popovertarget="delete-3"
+                    popovertargetaction="hide">Cancel</button><button type="button" class="delete-button"
+                    disabled>Delete event</button></div>
+        </div>
     </main>
-
     <footer>
-        <p>Prototype: organiser access is not authenticated.</p>
+        <div class="footer-content">
+            <div class="footer-brand"><img src="White_WOName.png" alt="" width="40" height="40">
+                <div><strong>Campus Life Planner</strong>
+                    <p>Find your people. Make your plans.</p>
+                </div>
+            </div>
+            <div class="footer-bottom"><span>© 2026 Campus Life Planner · Student project</span><a
+                    href="https://github.com/Ismail-Nd">Built by Ismail ↗</a></div>
+        </div>
     </footer>
 </body>
 
