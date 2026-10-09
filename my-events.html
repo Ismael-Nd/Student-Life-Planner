@@ -17,7 +17,7 @@
         </div>
         <nav aria-label="Main navigation"><a href="index.html">Discover</a><a href="my-events.html"
                 aria-current="page">My Events</a><a href="organizers.html">Organizers</a><a
-                href="index.html#about">About</a><a href="login.html">Logout</a></nav>
+                href="index.html#about">About</a><a href="settings.html">Settings</a><a href="login.html">Logout</a></nav>
     </header>
     <main id="main-content" tabindex="-1">
         <div class="page-topbar">
@@ -26,7 +26,7 @@
                 <h2 id="saved-heading">My Events</h2>
             </div><a class="button-primary" href="index.html#events">Discover events ↗</a>
         </div>
-        <section aria-labelledby="saved-heading">
+        <section aria-labelledby="stats-heading" class="planning-dashboard"><div class="section-heading"><h2 id="stats-heading">Your planning overview</h2><span class="muted small">Sample layout</span></div><dl class="planning-stats"><div><dt>Total records</dt><dd>0</dd></div><div><dt>Total duration</dt><dd>0 <small>min</small></dd></div><div><dt>Top category</dt><dd>—</dd></div></dl><div class="planning-panels"><section class="settings-panel" aria-labelledby="trend-heading"><h3 id="trend-heading">Last seven days</h3><p class="muted small">Illustrative chart; calculations will be added in M5.</p><ol class="trend-chart" aria-label="Sample seven-day activity chart"><li><span class="trend-bar" style="--bar-height:20%"></span><span>Mon</span></li><li><span class="trend-bar" style="--bar-height:50%"></span><span>Tue</span></li><li><span class="trend-bar" style="--bar-height:30%"></span><span>Wed</span></li><li><span class="trend-bar" style="--bar-height:80%"></span><span>Thu</span></li><li><span class="trend-bar" style="--bar-height:40%"></span><span>Fri</span></li><li><span class="trend-bar" style="--bar-height:65%"></span><span>Sat</span></li><li><span class="trend-bar" style="--bar-height:25%"></span><span>Sun</span></li></ol></section><section class="settings-panel" aria-labelledby="target-heading"><h3 id="target-heading">Weekly time target</h3><p class="target-value">0 / 600 <small>minutes</small></p><progress value="0" max="600" aria-label="Time used toward weekly target">0 of 600 minutes</progress><p role="status" id="target-status">600 minutes remaining.</p><a href="settings.html">Adjust your target ↗</a></section></div></section><section aria-labelledby="saved-heading">
             <div id="saved-events" class="event-list"></div>
             <div id="saved-empty" class="empty-state">
                 <h3>Your next plan starts with a bookmark.</h3>
