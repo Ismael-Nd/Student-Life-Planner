@@ -805,6 +805,7 @@
         background: var(--navy);
         min-height: 400px;
     }
+
     .student-page .recommended-image img {
         position: absolute;
         inset: 0;
@@ -856,5 +857,144 @@
     .student-page .button-primary,
     .student-page .event-card {
         transition: none;
+    }
+}
+
+/* M2 settings and planning dashboard layouts. */
+.student-page .settings-panel {
+    background: white;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.student-page .settings-panel h2,
+.student-page .settings-panel h3 {
+    margin-top: 0;
+}
+
+.student-page .settings-field {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 1.25rem 0;
+}
+
+.student-page .settings-field label {
+    font-weight: 600;
+    font-size: .85rem;
+}
+
+.student-page .settings-field input,
+.student-page .settings-field select {
+    width: 100%;
+    max-width: 480px;
+    min-height: 44px;
+    padding: .75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #f9fafc;
+    color: var(--text);
+}
+
+.student-page .settings-field small {
+    color: var(--muted);
+}
+
+.student-page .planning-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.student-page .planning-stats>div {
+    flex: 1 1 200px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+}
+
+.student-page .planning-stats dt {
+    color: var(--muted);
+    font-size: .85rem;
+}
+
+.student-page .planning-stats dd {
+    margin: .5rem 0 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.student-page .planning-stats small,
+.student-page .target-value small {
+    font-size: .8rem;
+}
+
+.student-page .planning-panels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.student-page .planning-panels>section {
+    flex: 1 1 300px;
+    min-width: 0;
+}
+
+.student-page .trend-chart {
+    display: flex;
+    gap: .5rem;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    height: 130px;
+}
+
+.student-page .trend-chart li {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: .4rem;
+    font-size: .7rem;
+}
+
+.student-page .trend-bar {
+    height: var(--bar-height);
+    width: min(100%, 32px);
+    background: var(--navy);
+    border-radius: 5px 5px 0 0;
+}
+
+.student-page .target-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.student-page progress {
+    width: 100%;
+    accent-color: var(--red);
+}
+
+.student-page .logo {
+    min-width: 0;
+}
+
+.student-page .event-card,
+.student-page .recommended-description {
+    min-width: 0;
+}
+
+.student-page .settings-field input[type=file] {
+    font-size: .75rem;
+}
+
+@media (min-width: 768px) {
+    .student-page .settings-panel {
+        padding: 1.75rem;
     }
 }

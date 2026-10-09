@@ -17,7 +17,7 @@
         </div>
         <nav aria-label="Main navigation"><a href="index.html" aria-current="page">Discover</a><a
                 href="my-events.html">My Events</a><a href="organizers.html">Organizers</a><a
-                href="index.html#about">About</a><a href="login.html">Logout</a></nav>
+                href="index.html#about">About</a><a href="settings.html">Settings</a><a href="login.html">Logout</a></nav>
     </header>
     <main id="main-content" tabindex="-1">
         <div class="page-topbar">
@@ -139,7 +139,7 @@
                         <path d="m16 16 5 5" />
                     </svg></div>
                 <div class="filter-group">
-<div class="filter-field"><label for="categories">Category</label><select id="categories" disabled>
+<div class="filter-field"><label for="categories">Category</label><select id="categories">
                         <option value="">All categories</option>
                         <option value="Arts">Arts</option>
                         <option value="Careers">Careers</option>
@@ -149,17 +149,17 @@
                         <option value="Wellbeing">Wellbeing</option>
                         <option value="Workshop">Workshop</option>
                     </select></div>
-                <div class="filter-field"><label for="entry-filter">Entry</label><select id="entry-filter" disabled>
+                <div class="filter-field"><label for="entry-filter">Entry</label><select id="entry-filter">
                         <option value="">Free & paid</option>
                         <option value="free">Free</option>
                         <option value="paid">Paid</option>
                     </select></div>
-                <div class="filter-field"><label for="event-sort">Sort</label><select id="event-sort" disabled>
+                <div class="filter-field"><label for="event-sort">Sort</label><select id="event-sort">
                         <option value="trending">Trending</option>
                         <option value="popular">Most popular</option>
                         <option value="newest">Newest</option>
                         <option value="oldest">Oldest</option>
-                    </select></div><button type="reset" disabled class="button-secondary filter-reset">Reset</button>
+                    </select></div><button type="reset" class="button-secondary filter-reset">Reset</button>
             </div>
 </form>
             <p id="filter-error" class="error" role="alert"></p>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings — Campus Life Planner</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+</head>
+
+<body class="student-page" data-page="settings"><a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+        <div class="logo"><img src="White_WOName.png" alt="" width="40" height="40">
+            <h1>Campus Life Planner</h1>
+        </div>
+        <nav aria-label="Main navigation"><a href="index.html">Discover</a><a href="my-events.html"
+                aria-current="page">My Events</a><a href="organizers.html">Organizers</a><a
+                href="index.html#about">About</a><a href="settings.html" aria-current="page">Settings</a><a href="login.html">Logout</a></nav>
+    </header>
+    <main id="main-content" tabindex="-1"><div class="page-topbar"><div><p class="eyebrow">YOUR PREFERENCES</p><h2>Settings</h2></div></div>
+<section class="settings-panel" aria-labelledby="planning-heading"><h2 id="planning-heading">Planning preferences</h2><form><div class="settings-field"><label for="time-target">Weekly time target (minutes)</label><input id="time-target" name="timeTarget" inputmode="decimal" value="600" aria-describedby="target-help"><small id="target-help">Choose how much time to set aside for campus activities.</small></div><div class="settings-field"><label for="display-unit">Display duration in</label><select id="display-unit" name="unit"><option value="minutes">Minutes</option><option value="hours">Hours</option></select><small>60 minutes equals 1 hour.</small></div><button type="submit" class="button-primary" disabled>Save preferences</button><p class="muted small">Preferences will save when we add persistence in M6.</p></form></section>
+<section class="settings-panel" aria-labelledby="data-heading"><h2 id="data-heading">Your data</h2><p>Keep a JSON backup of your plans or import a previous backup.</p><div class="settings-field"><label for="json-import">Choose JSON backup</label><input type="file" id="json-import" accept=".json,application/json" disabled><small>Import will validate the file before replacing existing records.</small></div><div class="page-actions"><button type="button" class="button-secondary" disabled>Import JSON</button><button type="button" class="button-secondary" disabled>Export JSON</button></div><p class="muted small">Import and export will be connected in M6.</p><p id="settings-status" role="status"></p></section></main><footer>
+        <div class="footer-content">
+            <div class="footer-brand"><img src="White_WOName.png" alt="" width="40" height="40">
+                <div><strong>Campus Life Planner</strong>
+                    <p>Find your people. Make your plans.</p>
+                </div>
+            </div>
+            <nav aria-label="Footer navigation"><a href="index.html">Discover</a><a href="my-events.html"
+                    aria-current="page">My Events</a><a href="organizers.html">Organizers</a><a
+                    href="index.html#about">About</a></nav>
+            <div class="footer-bottom"><span>© 2026 Campus Life Planner · Student project</span><a
+                    href="https://github.com/Ismail-Nd">Built by Ismail ↗</a></div>
+        </div>
+    </footer>
+    </body></html>

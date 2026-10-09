@@ -33,3 +33,6 @@ Each JS lesson: explain one concept, write a small part, try it in the browser, 
 Added organizer.html with sample listings, RSVP counts, native details/summary attendee previews, and a create/edit form. Added login.html with student and organizer form layouts and explicit dashboard preview links. Logout links return to the login layout; authentication and session clearing are not implemented. Edit links navigate to the form; loading, saving, deletion, and real attendee data remain for later lessons. No JavaScript was added.
 
 Organizer layout now uses a compact event table and native HTML popovers for create, edit, attendees, and delete confirmation. Saves/deletes remain disabled. Sample start times added for display. Student hosting links removed; role enforcement will require later authentication logic.
+
+## M2 completed — 9 October 2026
+Required semantic sections and responsive HTML/CSS layouts are present, including Settings and the planning dashboard skeleton. Browser checks at 360/768/1024, field labels, IDs, keyboard skip link, and native event popover verified. See M2-review.md for evidence and limitations. Next milestone is M3 validation; no new JavaScript was introduced.
