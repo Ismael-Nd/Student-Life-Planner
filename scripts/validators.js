@@ -32,3 +32,12 @@ export function isValidDate(value) {
     );
 
 }
+
+export function hasDuplicateWords(value) {
+    const pattern = / \b(\w+)\s+\1\b/i;
+    return pattern.test(value);
+}
+
+export function collapseTitleSpaces(value) {
+    return value.replace(/ {2,}/g, " ");
+}
