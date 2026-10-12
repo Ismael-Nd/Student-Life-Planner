@@ -17,7 +17,8 @@
         </div>
         <nav aria-label="Main navigation"><a href="index.html" aria-current="page">Discover</a><a
                 href="my-events.html">My Events</a><a href="organizers.html">Organizers</a><a
-                href="index.html#about">About</a><a href="settings.html">Settings</a><a href="login.html">Logout</a></nav>
+                href="index.html#about">About</a><a href="settings.html">Settings</a><a href="login.html">Logout</a>
+        </nav>
     </header>
     <main id="main-content" tabindex="-1">
         <div class="page-topbar">
@@ -132,36 +133,36 @@
             </div>
             <form id="discovery-filters" class="search-filter" role="search" aria-label="Find campus events">
                 <div class="search"><label class="visually-hidden" for="event-search">Search events</label><input
-                        type="search" id="event-search" placeholder="Search events, organisers, venues" disabled><svg
+                        type="search" id="event-search" placeholder="Search events, organisers, venues"><svg
                         class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                         aria-hidden="true">
                         <circle cx="10.5" cy="10.5" r="6.5" />
                         <path d="m16 16 5 5" />
                     </svg></div>
                 <div class="filter-group">
-<div class="filter-field"><label for="categories">Category</label><select id="categories">
-                        <option value="">All categories</option>
-                        <option value="Arts">Arts</option>
-                        <option value="Careers">Careers</option>
-                        <option value="Masterclass">Masterclass</option>
-                        <option value="Social">Social</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Wellbeing">Wellbeing</option>
-                        <option value="Workshop">Workshop</option>
-                    </select></div>
-                <div class="filter-field"><label for="entry-filter">Entry</label><select id="entry-filter">
-                        <option value="">Free & paid</option>
-                        <option value="free">Free</option>
-                        <option value="paid">Paid</option>
-                    </select></div>
-                <div class="filter-field"><label for="event-sort">Sort</label><select id="event-sort">
-                        <option value="trending">Trending</option>
-                        <option value="popular">Most popular</option>
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
-                    </select></div><button type="reset" class="button-secondary filter-reset">Reset</button>
-            </div>
-</form>
+                    <div class="filter-field"><label for="categories">Category</label><select id="categories">
+                            <option value="">All categories</option>
+                            <option value="Arts">Arts</option>
+                            <option value="Careers">Careers</option>
+                            <option value="Masterclass">Masterclass</option>
+                            <option value="Social">Social</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Wellbeing">Wellbeing</option>
+                            <option value="Workshop">Workshop</option>
+                        </select></div>
+                    <div class="filter-field"><label for="entry-filter">Entry</label><select id="entry-filter">
+                            <option value="">Free & paid</option>
+                            <option value="free">Free</option>
+                            <option value="paid">Paid</option>
+                        </select></div>
+                    <div class="filter-field"><label for="event-sort">Sort</label><select id="event-sort">
+                            <option value="trending">Trending</option>
+                            <option value="popular">Most popular</option>
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                        </select></div><button type="reset" class="button-secondary filter-reset">Reset</button>
+                </div>
+            </form>
             <p id="filter-error" class="error" role="alert"></p>
             <div id="discovery-events" class="event-list">
                 <article class="event-card" data-event-id="event-1" data-category="Careers">
