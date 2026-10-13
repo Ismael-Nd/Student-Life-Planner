@@ -11,7 +11,7 @@ The recommended image fills its container with object-fit: cover; edges may be c
 main.css contains only student-page selectors. organizer.css holds the organiser's separate page styles.
 
 ## Luma layout adaptation (8 October 2026)
-References: https://luma.com/ and https://luma.com/discover. Adapted the spacious landing introduction, compact navigation, rounded controls, understated cards, and muted supporting text. Retained ALU navy/red colours and Montserrat. Recommended posters now use width: 100% and height: auto in normal document flow; no fixed height or object-fit cropping. This supersedes the earlier cover treatment.
+References: https://luma.com/ and https://luma.com/discover. Adapted the spacious landing introduction, compact navigation, rounded controls, understated cards, and muted supporting text. Retained ALU navy/red colours and Montserrat.
 
 Card layout adapted from the student's supplied reference image: rounded rectangle with upper image and lower information panel, omitting the folder tab. Discovery thumbnails may crop; the recommended poster does not. Trending uses sample recent-interest scores, popularity uses sample total-interest scores, newest/oldest use created dates. Sorting is local demonstration data, not live campus statistics. Search currently matches plain text; assignment regex search remains an upcoming milestone.
 

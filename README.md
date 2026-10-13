@@ -1,176 +1,161 @@
 # Campus Life Planner
 
-A responsive campus event discovery website built with vanilla HTML, CSS, and JavaScript for the **Building Responsive UI** assignment.
+Campus Life Planner helps students find campus events without searching through emails. Students can browse events and organizer profiles, while administrators have a workspace for managing event listings.
 
-**Chosen theme:** Campus Life Planner.
+Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** theme of the Building Responsive UI assignment.
 
-Students often miss events buried in email. This project brings campus events into one place, with a student discovery interface and an administration workspace for event organizers.
+## Links
 
-## Project links
+- [Repository](https://github.com/Ismael-Nd/Student-Life-Planner)
+- GitHub Pages: deployment pending. Expected URL: https://ismael-nd.github.io/Student-Life-Planner/
+- Demo video: coming soon.
 
-- Repository: [Student-Life-Planner](https://github.com/Ismael-Nd/Student-Life-Planner)
-- Intended GitHub Pages URL: https://ismael-nd.github.io/Student-Life-Planner/ — deployment and public accessibility still need to be verified.
-- Demo video: pending; add an accessible unlisted 2–3 minute video link before submission.
+## Pages
 
-## Current progress
+| Page | Purpose |
+| --- | --- |
+| `index.html` | Event discovery, recommendations, and About |
+| `my-events.html` | Saved events and planning overview |
+| `organizers.html` | Organizer profiles |
+| `organizer.html` | Administration dashboard and event forms |
+| `login.html` | Student login |
+| `organizer-login.html` | Organizer login |
+| `settings.html` | Time target, duration units, and data backup controls |
 
-M2 layouts are complete. M3 form validation is in progress; the dedicated assertion test page remains to be built.
+## Features
 
-### Implemented
+- Nine sample campus events with posters, categories, dates, durations, and venues.
+- Recommended-event carousel layout.
+- Category, entry, and sort dropdowns with a reset control.
+- Compact administration table with RSVP counts and icon actions.
+- Pop-ups for creating and editing events, viewing attendees, and confirming deletion.
+- Separate student and organizer login forms.
+- Planning dashboard layout with duration totals, top category, weekly target, and seven-day chart.
+- Create-form validation for title, duration, category, and date.
+- Repeated-word detection and automatic collapse of repeated title spaces.
+- Inline error messages and focus on the first invalid field during submission.
+- Responsive layouts at mobile, tablet, and desktop sizes.
 
-- Student discovery page with nine sample event cards and recommended-event layout.
-- Separate My Events, organizer profiles, administration dashboard, and student/organizer login pages.
-- Compact administration event table with sample RSVP counts and attendee names.
-- Native HTML pop-ups for create/edit forms, attendees, and delete confirmation.
-- Settings and planning dashboard layouts, including duration units, a weekly time target, and a sample seven-day chart.
-- Four create-form validators: title, duration, category/tag, and date.
-- Advanced regex using a back-reference to detect consecutive repeated words.
-- Repeated title spaces collapse on blur and submission.
-- Inline validation feedback on input/blur, plus submission validation and focus on the first invalid field.
-- Mobile-first CSS with breakpoints at 360px, 768px, and 1024px.
+## Current status
 
-### Still to implement
+M2 HTML/CSS layouts are complete. M3 form validation is in progress.
 
-- Dynamic record creation, editing, deletion, IDs, and timestamps.
-- Search, regex compilation/error handling, safe match highlighting, and working filtering/sorting.
-- Saved-event/bookmark behaviour connected to the current pages.
-- Calculated statistics, seven-day trend, time target announcements, and minutes/hours conversion.
-- Connected localStorage persistence and validated JSON import/export.
-- `tests.html`, final `seed.json` with at least ten diverse records, final accessibility audit, demo video, and verified GitHub Pages deployment.
+The create form validates its title, duration, category, and date fields. Event saving is not connected. Event listings, RSVP counts, attendee names, and the chart use sample data.
 
-Dropdowns allow selection and Reset restores defaults, but do not yet filter or sort the event cards. Several controls remain disabled placeholders. Earlier bookmark/UI scripts are retained in the repository but are not evidence that the current layouts support those features.
+Search, filtering, sorting, bookmarks, calculated statistics, time conversions, localStorage integration, and JSON import/export are still in development. Login and Logout are navigation previews without authentication. The dedicated `tests.html` page and final `seed.json` are not yet included.
 
-## Account and RSVP prototype limits
-
-Login pages are UI previews, and Logout links return to the corresponding login page. There is no authentication or secure role enforcement. Event creation controls appear in the administration interface only.
-
-RSVP counts and attendees are sample data, not real registrations. Future registration links can open an organizer's external registration page, but this website cannot infer attendee counts from an external service without an integration.
-
-localStorage is scoped to a browser and origin. Pages on the same origin can share it, but students and organizers using different devices cannot share records through it. A production application needs a backend, authentication, shared storage, and permission checks for administration actions. Passwords will not be stored in localStorage.
+Only the administration interface contains event creation controls. A production version needs backend authentication, permission checks, and shared storage. localStorage works within one browser and origin; it does not share data between different users' devices. External registration links alone cannot provide RSVP counts or attendee lists.
 
 ## Run locally
 
 1. Clone or download the repository.
-2. Open the project folder in VS Code.
-3. Use the Live Server extension to serve `index.html`.
-4. Open `organizer.html` to try create-form validation.
+2. Open the folder in VS Code.
+3. Start Live Server on `index.html`.
+4. Open `organizer.html` to try the create form.
 
-Serve the project over HTTP rather than opening files directly: JavaScript uses ES modules. No framework, build step, or API key is required.
+Use a local HTTP server because the JavaScript uses ES modules. No framework, build step, or API key is required.
 
-## Pages and source structure
+## Project structure
 
 ```text
-index.html                 Student discovery and About
-my-events.html             Saved-event and planning dashboard layouts
-organizers.html            Organizer profiles visible to students
-organizer.html             Administration dashboard and pop-up forms
-login.html                 Student login layout
-organizer-login.html       Organizer login layout
-settings.html              Preferences and import/export layouts
-styles/main.css            Shared visual styling and student layouts
-styles/organizer.css       Administration and login layout styling
-scripts/validators.js      Reusable validation functions
-scripts/form-validation.js Create-form events and error feedback
-scripts/events-data.js     Sample event data
-scripts/bookmarks.js       Earlier bookmark storage helper
-scripts/student-ui.js      Earlier UI code, currently disconnected
-assets/                    Posters, textures, and icon license
-docs/                     Milestone notes and styling references
+styles/
+  main.css             Shared styling and student layouts
+  organizer.css        Administration and login layouts
+scripts/
+  validators.js        Field validation rules
+  form-validation.js   Create-form validation and feedback
+  events-data.js       Sample event data
+  bookmarks.js         Bookmark storage helper
+  student-ui.js        UI module
+assets/                Event posters, textures, and icon license
+docs/                  Specifications, milestone reviews, and references
 ```
 
-`organizers.html` and `organizer.html` have different purposes: the plural filename contains profiles; the singular filename is the administration workspace.
+The bookmark storage helper and UI module are not currently connected to the page layouts.
 
-## Regex catalog
+## Validation rules
 
-Patterns are implemented in `scripts/validators.js`.
-
-| Purpose | Pattern | Examples |
+| Field / purpose | Regex | Examples |
 | --- | --- | --- |
-| Title edges | `/^\S(?:.*\S)?$/` | Accept `Campus Fair`; reject an empty string or ` Campus Fair` |
-| Duration | `/^(0\|[1-9]\d*)(\.\d{1,2})?$/` | Accept `0`, `90`, `45.50`; reject `012.92`, `100.943`, `90abc` |
-| Category/tag | `/^[A-Za-z]+(?:[ -][A-Za-z]+)*$/` | Accept `Careers`, `Campus Life`, `Student-Life`; reject `Sports2`, double spaces, leading/trailing separators |
-| Date format | `/^\d{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[12]\d\|3[01])$/` | Accept `2026-10-13`; reject `2026-13-13` and `2026-1-13` |
-| Duplicate words — advanced | `/\b(\w+)\s+\1\b/i` | Detect `Campus campus` and `Join the the workshop`; allow `Campus Careers Fair` |
-| Collapse spaces | `/ {2,}/g` replaced with one space | Convert `Campus  Careers   Fair` to `Campus Careers Fair` |
+| Title | `/^\S(?:.*\S)?$/` | `Campus Fair` passes; an empty title or ` Campus Fair` fails |
+| Duration | `/^(0\|[1-9]\d*)(\.\d{1,2})?$/` | `90` and `45.50` pass; `012.92`, `100.943`, and `90abc` fail |
+| Category | `/^[A-Za-z]+(?:[ -][A-Za-z]+)*$/` | `Campus Life` and `Student-Life` pass; `Sports2` and double spaces fail |
+| Date format | `/^\d{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[12]\d\|3[01])$/` | `2026-10-13` passes; `2026-13-13` fails |
+| Duplicate words | `/\b(\w+)\s+\1\b/i` | Detects `Campus campus` and `Join the the workshop` |
+| Repeated spaces | `/ {2,}/g` | Replaces runs of spaces with one space |
 
-The date regex checks format only. `isValidDate()` also compares UTC calendar components to reject impossible dates such as `2026-02-30` and handle leap years. The duplicate-word function returns `true` when a problem is found; the `isValid...` functions return `true` when a value passes.
+The duplicate-word rule uses a **back-reference** (`\1`) to match the captured word again. Matching is case-insensitive.
 
-## Keyboard map
+Date validation also checks calendar components, so dates such as `2026-02-30` are rejected. Title spaces collapse when the field loses focus and when the form is submitted.
 
-| Key/action | Behaviour |
+## Keyboard controls
+
+| Key | Action |
 | --- | --- |
-| Tab / Shift+Tab | Move forward/backward through enabled controls |
-| First Tab, then Enter | Activate the skip-to-content link |
-| Enter | Follow a focused link or activate a focused button |
-| Space | Activate a focused button |
-| Arrow keys | Change options in native dropdowns, following browser behaviour |
-| Escape | Close an open native event pop-up |
-| Submit an invalid create form | Move focus to the first invalid validated field |
+| Tab / Shift+Tab | Move between enabled links, buttons, and fields |
+| Enter | Follow a link or activate a button |
+| Space | Activate a button |
+| Arrow keys | Navigate native dropdown options |
+| Escape | Close an event pop-up |
 
-The administration table has a focusable scrolling region for narrow screens. Disabled placeholder buttons are excluded from the keyboard sequence.
+The first focusable link skips to the main content. Submitting invalid fields moves focus to the first invalid field. The administration table has a focusable horizontal scroll region on narrow screens.
 
-## Accessibility notes
+## Accessibility
 
-- Semantic header, navigation, main, section, and footer landmarks with headings.
-- Labels bound to inputs and meaningful accessible names for icon buttons.
-- Help/error text linked through `aria-describedby`.
-- Invalid create-form fields marked with `aria-invalid`.
-- Inline errors use polite live announcements; form status uses `role="status"`.
-- Skip link and visible 1px focus outlines.
-- Navy/red palette, text feedback alongside colour, and reduced-motion styling.
-- Decorative posters/icons use empty alt text or `aria-hidden`; event names remain available as text.
+- Semantic landmarks and headings.
+- Labels linked to form inputs.
+- Accessible names for icon-only buttons.
+- Error and help text connected through `aria-describedby`.
+- `aria-invalid` identifies invalid fields.
+- Polite live regions announce errors; form feedback uses `role="status"`.
+- Visible focus outlines and reduced-motion styling.
+- Decorative images and icons are excluded from screen-reader output.
 
-M2 browser checks covered all seven pages at 360px, 768px, and 1024px, with no page-wide horizontal overflow. Labels, duplicate IDs, skip-link focus, and native pop-up keyboard controls were checked. This is not a claim of a full screen-reader or contrast audit; that remains part of M7.
+All seven pages were checked at 360px, 768px, and 1024px for page overflow. Field labels, duplicate IDs, skip-link focus, and pop-up keyboard controls were also checked. A full contrast and screen-reader audit is planned for M7.
 
 ## Testing
 
-`tests.html` is not yet available. Small assertions will be added during M3 and documented here once runnable.
+Manual checks are available in the Create event form on `organizer.html`:
 
-Current manual create-form checks:
+1. Enter `90abc` as duration, then change it to `90`. The error appears and clears.
+2. Enter ` Campus Fair` as title. An edge-space error appears.
+3. Enter `Campus campus Fair`. A repeated-word error appears.
+4. Enter `Campus  Fair` and leave the field. It becomes `Campus Fair`.
+5. Enter `Sports2` as category, then change it to `Campus Life`. The error appears and clears.
+6. Clear the date and leave the field, then select a valid date. The error appears and clears.
+7. Submit invalid fields. Errors appear and the first invalid field receives focus.
+8. Submit valid title, duration, category, and date values. A validation confirmation appears; no event is saved.
 
-1. Serve the project and open `organizer.html`, then select **Create event**.
-2. Enter `90abc` as duration: an inline error should appear. Change it to `90`: the error should clear.
-3. Enter ` Campus Fair` as title: expect an edge-space error.
-4. Enter `Campus campus Fair`: expect a repeated-word error.
-5. Enter `Campus  Fair` and leave the field: expect `Campus Fair`.
-6. Enter `Sports2` as category: expect an error. Change it to `Campus Life`: expect no error.
-7. Leave the date empty and blur: expect an error; choosing a valid date clears it.
-8. Submit with invalid required validation fields: expect errors and focus on the first invalid field.
-9. Use valid title, duration, category, and date: expect a validation-passed message. Saving is not connected yet.
+Automated assertions in `tests.html` are planned for M3, including leap-year and impossible-date cases.
 
-Calendar edge cases to cover in the assertion page: `2024-02-29` passes, `2026-02-29` and `2026-04-31` fail.
-
-## Milestone roadmap
+## Milestones
 
 | Milestone | Weight | Status |
 | --- | --- | --- |
-| M1 — Spec & Wireframes | 10% | Specification/design decisions established; review final submission evidence |
-| M2 — Semantic HTML & Base CSS | 10% | Layout stage complete; see `docs/M2-review.md` |
-| M3 — Forms & Regex Validation | 15% | In progress; validators and create-form feedback added, assertions pending |
-| M4 — Render, Sort & Regex Search | 20% | Pending |
-| M5 — Stats & Cap/Targets | 15% | Layout only; logic pending |
-| M6 — Persistence, Import/Export & Settings | 15% | Layout only; integration pending |
+| M1 — Specification & Wireframes | 10% | Specification and design planning established |
+| M2 — Semantic HTML & Base CSS | 10% | Complete |
+| M3 — Forms & Regex Validation | 15% | In progress |
+| M4 — Rendering, Sorting & Regex Search | 20% | Pending |
+| M5 — Statistics & Targets | 15% | Layouts ready; calculations pending |
+| M6 — Persistence, Import/Export & Settings | 15% | Layouts ready; integration pending |
 | M7 — Polish & Accessibility Audit | 15% | Pending |
 
-## Credits and references
+## Credits
 
-- Assignment-provided validation patterns and back-reference example adapted into reusable functions.
-- [ALU](https://www.alueducation.com/) inspired the navy/red visual palette.
-- [Luma](https://luma.com/) and [Luma Discover](https://luma.com/discover) informed layout decisions.
-- Student-supplied card reference informed rounded image/content panels.
-- [Hugeicons](https://github.com/hugeicons/hugeicons): free SVG paths from `@hugeicons/core-free-icons` 4.3.5 for administration actions. MIT license preserved in `assets/hugeicons-LICENSE.txt`.
-- Montserrat served through Google Fonts.
+- Validation patterns adapted from the assignment's starter examples.
+- [ALU](https://www.alueducation.com/) for colour and branding inspiration.
+- [Luma](https://luma.com/) for event-discovery layout inspiration.
+- [Hugeicons](https://github.com/hugeicons/hugeicons) free SVG icons for administration actions. MIT license included in `assets/hugeicons-LICENSE.txt`.
+- Montserrat from Google Fonts.
 
-See `docs/styling-references.md` for historical design notes; some earlier implementation notes there are superseded by the current progress described in this README.
+## Contact
 
-## Author and submission checklist
+Ismail — n.ismael@alustudent.com
 
-Contact: n.ismael@alustudent.com.
+## Submission requirements remaining
 
-Before submitting:
-
-- Finish required functionality and tests.
+- Complete the required functionality and assertion tests.
 - Include `seed.json` with at least ten diverse records.
-- Enable GitHub Pages and verify the live URL above works publicly.
-- Add and verify the 2–3 minute demo video link.
-- Confirm the repository contribution history lists only your own GitHub account, as required by the assignment. This has not been independently verified here.
+- Deploy to GitHub Pages and confirm public access.
+- Include a 2–3 minute demo video.
+- Confirm that the repository has only the author's GitHub account in its contribution history.

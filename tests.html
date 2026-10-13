@@ -10,6 +10,7 @@
 <body>
 
     <script>
+        import { isValidDuration } from "./validators.js";
         console.assert(
             isValidDuration("90") === true,
             "90 should be a valid duration"
