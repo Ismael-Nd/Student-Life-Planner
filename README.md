@@ -134,7 +134,7 @@ Automated assertions in `tests.html` are planned for M3, including leap-year and
 | --- | --- | --- |
 | M1 — Specification & Wireframes | 10% | Specification and design planning established |
 | M2 — Semantic HTML & Base CSS | 10% | Complete |
-| M3 — Forms & Regex Validation | 15% | In progress |
+| M3 — Forms & Regex Validation | 15% | Complete |
 | M4 — Rendering, Sorting & Regex Search | 20% | Pending |
 | M5 — Statistics & Targets | 15% | Layouts ready; calculations pending |
 | M6 — Persistence, Import/Export & Settings | 15% | Layouts ready; integration pending |
