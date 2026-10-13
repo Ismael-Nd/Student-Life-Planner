@@ -1,38 +1,70 @@
 # Learning roadmap — Campus Life Planner
 
-We are building this together, with HTML/CSS first and small explained JavaScript steps. Do not treat the styled layout as a completed assignment.
+## Current stage: M3 complete, M4 next
 
-## Current stage: M2 (10%) — layout in progress
+The HTML/CSS layouts and form-validation implementation are complete. Event rendering and data changes are the next stage.
 
-- Discover dashboard: compact action bar, recommended carousel layout, nine sample event cards.
-- Full-width layout: 16px side padding on mobile, 24px on wider screens.
-- Separate my-events.html and organizers.html pages; accessible headings and navigation.
-- Navy header/footer, red actions, light-grey cards, page-wide fading texture.
-- Current carousel, RSVP, bookmark, search, and filter controls are disabled HTML placeholders. JavaScript source from earlier work is retained, but not loaded into the redesigned pages until we learn to wire it correctly.
-- Nine demo records exist in scripts/events-data.js. The final seed.json must contain at least TEN diverse records; it is not delivered yet.
+| Milestone | Weight | Status |
+| --- | --- | --- |
+| M1 — Specification & Wireframes | 10% | Theme, roles, and design planning established; review final specification and sketches |
+| M2 — Semantic HTML & Base CSS | 10% | Complete |
+| M3 — Forms & Regex Validation | 15% | Implementation complete; run the assertion page before committing |
+| M4 — Rendering, Sorting & Regex Search | 20% | Next |
+| M5 — Statistics & Targets | 15% | Layout ready; calculations pending |
+| M6 — Persistence, Import/Export & Settings | 15% | Layout ready; integration pending |
+| M7 — Polish & Accessibility Audit | 15% | Pending |
 
-## Next lessons, in milestone order
+## M2 — Completed layouts
 
-| Milestone | Weight | Work still needed |
-|---|---:|---|
-| M1 | 10% | Review/update specification and wireframes for the agreed multi-page design |
-| M2 | 10% | Finish organiser form, dashboard/stat and settings layouts; check phone/tablet/desktop |
-| M3 | 15% | Input values, functions, regex rules, inline errors, valid calendar dates, tests.html |
-| M4 | 20% | Arrays and state, DOM rendering, add/edit/delete, date/title/duration sorting, regex compiler and safe highlights |
-| M5 | 15% | Count, duration total, top tag, seven-day chart, time budget, polite/assertive live updates |
-| M6 | 15% | Auto-save records/settings, validated import/export, minutes/hours conversions, bookmark persistence |
-| M7 | 15% | Keyboard and contrast audit, README, 10+ seed records, GitHub Pages, video and contributor check |
+- Discovery page with recommended events and nine sample cards.
+- My Events, organizer profiles, Settings, and separate student/organizer login pages.
+- Administration table with RSVP counts, attendee previews, and event-form pop-ups.
+- About/contact, navigation, footer, skip links, input labels, and visible focus outlines.
+- Mobile-first styling checked at 360px, 768px, and 1024px.
 
-Automatic carousel rotation is additional polish, not a required grading feature. Implement it last, with a pause button, arrows/dots, reduced-motion support, and paused rotation while users interact. Event-details dialog is also an optional convenience.
+## M3 — Completed validation
 
-Trending and popularity are sample metrics; the required sorts are date, title, and duration in both directions. These required sorts take priority during M4.
+- Title, duration, category/tag, and date regex rules.
+- Calendar check for impossible dates and leap years.
+- Advanced back-reference pattern for consecutive repeated words.
+- Repeated title-space cleanup.
+- Inline error messages, aria-describedby, aria-invalid, and live status feedback.
+- Input/blur and submission checks shared by Create and all three Edit forms.
+- tests.html with essential validator assertions. Run it through Live Server and check the console for assertion errors.
 
-Each JS lesson: explain one concept, write a small part, try it in the browser, then review it together. Keep commits authentic and use the student's Git identity. Do not claim completed tests, accessibility checks, deployment or production registrations until verified.
+Validation does not save an event. The forms currently report whether the four connected fields pass.
 
-### Organizer and account layout preview
-Added organizer.html with sample listings, RSVP counts, native details/summary attendee previews, and a create/edit form. Added login.html with student and organizer form layouts and explicit dashboard preview links. Logout links return to the login layout; authentication and session clearing are not implemented. Edit links navigate to the form; loading, saving, deletion, and real attendee data remain for later lessons. No JavaScript was added.
+## M4 — Next lessons
 
-Organizer layout now uses a compact event table and native HTML popovers for create, edit, attendees, and delete confirmation. Saves/deletes remain disabled. Sample start times added for display. Student hosting links removed; role enforcement will require later authentication logic.
+1. Understand the event objects and array in scripts/events-data.js.
+2. Render one event, then the full list, using DOM methods.
+3. Connect record creation, editing, and deletion with unique IDs and timestamps.
+4. Add category and entry filters.
+5. Sort by date, title, and duration in both directions.
+6. Compile live regex search with try/catch and a case-insensitive toggle.
+7. Highlight matches safely with mark elements and provide empty/error states.
 
-## M2 completed — 9 October 2026
-Required semantic sections and responsive HTML/CSS layouts are present, including Settings and the planning dashboard skeleton. Browser checks at 360/768/1024, field labels, IDs, keyboard skip link, and native event popover verified. See M2-review.md for evidence and limitations. Next milestone is M3 validation; no new JavaScript was introduced.
+Build each part in small steps: explain the concept, add the code, and test the behaviour.
+
+## M5 — Statistics and targets
+
+Calculate record count, duration total, top tag, and the last-seven-days trend. Connect the weekly time target and announce remaining time politely or overage assertively.
+
+## M6 — Persistence and settings
+
+Auto-save records and settings to localStorage. Validate JSON imports before loading, support export, convert minutes/hours, and persist bookmarks. Handle malformed data and unavailable storage.
+
+localStorage is shared only within one browser and origin. Real accounts, shared event data, and administration permissions require a backend.
+
+## M7 — Submission and polish
+
+- Complete keyboard, contrast, and screen-reader checks.
+- Add seed.json with at least ten diverse records.
+- Update README with working features and test instructions.
+- Deploy on GitHub Pages and verify public access.
+- Record an accessible 2–3 minute demo video.
+- Confirm only the author's GitHub account appears in the contribution history.
+
+## Optional features
+
+Automatic carousel rotation and event-detail dialogs can follow the required features. Carousel rotation needs pause controls and reduced-motion support. Trending/popularity sorts use sample metrics; required date/title/duration sorts take priority.
