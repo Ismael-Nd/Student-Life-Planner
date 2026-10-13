@@ -298,18 +298,29 @@
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                     </svg></button>
             </div>
-            <form class="admin-form" id="edit-form-1">
-                <div class="form-field full-field"><label for="title-1">Event title</label><input id="title-1"
-                        name="title" value="Campus Careers Fair" required maxlength="120"></div>
+            <form class="admin-form" id="edit-form-1" novalidate>
+                <div class="form-field full-field"><label for="title-1" aria-describedby="title-error-1">Event
+                        title</label><input id="title-1" name="title" value="Campus Careers Fair" required
+                        maxlength="120">
+                    <p id="title-error-1" class="error" aria-live="polite"></p>
+                </div>
                 <div class="form-field"><label for="date-1">Event date</label><input type="date" id="date-1"
-                        name="dueDate" value="2026-10-14" required></div>
+                        name="dueDate" value="2026-10-14" aria-describedby="date-error-1" required>
+                    <p id="date-error-1" class="error" aria-live="polite"></p>
+
+                </div>
                 <div class="form-field"><label for="time-1">Start time</label><input type="time" id="time-1"
                         name="startTime" value="14:00" required></div>
-                <div class="form-field"><label for="duration-1">Duration in minutes</label><input id="duration-1"
-                        name="duration" value="120" inputmode="decimal" aria-describedby="help-1" required><small
-                        id="help-1">For example, 90 or 45.50.</small></div>
+                <div class="form-field"><label for="duration-1" aria-describedby="help-1 duration-error-1">Duration in
+                        minutes</label><input id="duration-1" name="duration" value="120" inputmode="decimal"
+                        aria-describedby="help-1" required><small id="help-1">For example, 90 or 45.50.</small>
+                    <p id="duration-error-1" class="error" aria-live="polite"></p>
+                </div>
                 <div class="form-field"><label for="tag-1">Category / tag</label><input id="tag-1" name="tag"
-                        value="Careers" placeholder="Careers" required></div>
+                        value="Careers" placeholder="Careers" aria-describedby="tag-error-1" required>
+                    <p id="tag-error-1" class="error" aria-live="polite"></p>
+
+                </div>
                 <div class="form-field"><label for="venue-1">Venue</label><input id="venue-1" name="venue"
                         value="Student Centre" required></div>
                 <div class="form-field"><label for="entry-1">Entry</label><select id="entry-1" name="entry">
@@ -320,7 +331,9 @@
                         name="registrationUrl" placeholder="https://"></div>
                 <div class="form-field full-field"><label for="description-1">Description</label><textarea
                         id="description-1" name="description" rows="4" required></textarea></div>
-                <div class="full-field"><button class="button-primary" type="submit" disabled>Save event</button></div>
+                <div class="full-field"><button class="button-primary" type="submit">Save event</button>
+                    <p id="form-status-1" role="status"></p>
+                </div>
             </form>
         </div>
         <div id="attendees-1" popover class="admin-popup" role="dialog" aria-labelledby="attendees-1-heading">
@@ -362,18 +375,22 @@
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                     </svg></button>
             </div>
-            <form class="admin-form" id="edit-form-2">
+            <form class="admin-form" id="edit-form-2" novalidate>
                 <div class="form-field full-field"><label for="title-2">Event title</label><input id="title-2"
-                        name="title" value="CV Clinic" required maxlength="120"></div>
+                        name="title" value="CV Clinic" required maxlength="120" aria-describedby="title-error-2">
+                    <p id="title-error-2" class="error" aria-live="polite"></p></div>
                 <div class="form-field"><label for="date-2">Event date</label><input type="date" id="date-2"
-                        name="dueDate" value="2026-10-12" required></div>
+                        name="dueDate" value="2026-10-12" required aria-describedby="date-error-2">
+                    <p id="date-error-2" class="error" aria-live="polite"></p></div>
                 <div class="form-field"><label for="time-2">Start time</label><input type="time" id="time-2"
                         name="startTime" value="10:00" required></div>
                 <div class="form-field"><label for="duration-2">Duration in minutes</label><input id="duration-2"
-                        name="duration" value="60" inputmode="decimal" aria-describedby="help-2" required><small
+                        name="duration" value="60" inputmode="decimal" aria-describedby="help-2 duration-error-2" required>
+                    <p id="duration-error-2" class="error" aria-live="polite"></p><small
                         id="help-2">For example, 90 or 45.50.</small></div>
                 <div class="form-field"><label for="tag-2">Category / tag</label><input id="tag-2" name="tag"
-                        value="Careers" placeholder="Careers" required></div>
+                        value="Careers" placeholder="Careers" required aria-describedby="tag-error-2">
+                    <p id="tag-error-2" class="error" aria-live="polite"></p></div>
                 <div class="form-field"><label for="venue-2">Venue</label><input id="venue-2" name="venue"
                         value="Learning Hub" required></div>
                 <div class="form-field"><label for="entry-2">Entry</label><select id="entry-2" name="entry">
@@ -384,7 +401,8 @@
                         name="registrationUrl" placeholder="https://"></div>
                 <div class="form-field full-field"><label for="description-2">Description</label><textarea
                         id="description-2" name="description" rows="4" required></textarea></div>
-                <div class="full-field"><button class="button-primary" type="submit" disabled>Save event</button></div>
+                <div class="full-field"><button class="button-primary" type="submit">Save event</button>
+                    <p id="form-status-2" role="status"></p></div>
             </form>
         </div>
         <div id="attendees-2" popover class="admin-popup" role="dialog" aria-labelledby="attendees-2-heading">
@@ -425,18 +443,22 @@
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                     </svg></button>
             </div>
-            <form class="admin-form" id="edit-form-3">
+            <form class="admin-form" id="edit-form-3" novalidate>
                 <div class="form-field full-field"><label for="title-3">Event title</label><input id="title-3"
-                        name="title" value="Founders Masterclass" required maxlength="120"></div>
+                        name="title" value="Founders Masterclass" required maxlength="120" aria-describedby="title-error-3">
+                    <p id="title-error-3" class="error" aria-live="polite"></p></div>
                 <div class="form-field"><label for="date-3">Event date</label><input type="date" id="date-3"
-                        name="dueDate" value="2026-10-21" required></div>
+                        name="dueDate" value="2026-10-21" required aria-describedby="date-error-3">
+                    <p id="date-error-3" class="error" aria-live="polite"></p></div>
                 <div class="form-field"><label for="time-3">Start time</label><input type="time" id="time-3"
                         name="startTime" value="15:00" required></div>
                 <div class="form-field"><label for="duration-3">Duration in minutes</label><input id="duration-3"
-                        name="duration" value="150" inputmode="decimal" aria-describedby="help-3" required><small
+                        name="duration" value="150" inputmode="decimal" aria-describedby="help-3 duration-error-3" required>
+                    <p id="duration-error-3" class="error" aria-live="polite"></p><small
                         id="help-3">For example, 90 or 45.50.</small></div>
                 <div class="form-field"><label for="tag-3">Category / tag</label><input id="tag-3" name="tag"
-                        value="Masterclass" placeholder="Careers" required></div>
+                        value="Masterclass" placeholder="Careers" required aria-describedby="tag-error-3">
+                    <p id="tag-error-3" class="error" aria-live="polite"></p></div>
                 <div class="form-field"><label for="venue-3">Venue</label><input id="venue-3" name="venue"
                         value="Auditorium" required></div>
                 <div class="form-field"><label for="entry-3">Entry</label><select id="entry-3" name="entry">
@@ -447,7 +469,8 @@
                         name="registrationUrl" placeholder="https://"></div>
                 <div class="form-field full-field"><label for="description-3">Description</label><textarea
                         id="description-3" name="description" rows="4" required></textarea></div>
-                <div class="full-field"><button class="button-primary" type="submit" disabled>Save event</button></div>
+                <div class="full-field"><button class="button-primary" type="submit">Save event</button>
+                    <p id="form-status-3" role="status"></p></div>
             </form>
         </div>
         <div id="attendees-3" popover class="admin-popup" role="dialog" aria-labelledby="attendees-3-heading">
