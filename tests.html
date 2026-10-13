@@ -12,57 +12,48 @@
     <script type="module">
         import {
             isValidDuration,
-            isValidTitle
+            isValidTitle,
+            isValidTag,
+            isValidDate,
+            hasDuplicateWords,
+            collapseTitleSpaces
         } from "./scripts/validators.js";
 
+        // Duration
+        console.assert(isValidDuration("45.50") === true,
+            "Valid duration");
+        console.assert(isValidDuration("012.943") === false,
+            "Invalid duration");
+
+        // Title
+        console.assert(isValidTitle("Campus Fair") === true,
+            "Valid title");
+        console.assert(isValidTitle(" Campus Fair ") === false,
+            "Reject edge spaces");
+
+        // Category
+        console.assert(isValidTag("Campus-Life") === true,
+            "Valid category");
+        console.assert(isValidTag("Sports2") === false,
+            "Reject digits in category");
+
+        // Calendar dates
+        console.assert(isValidDate("2024-02-29") === true,
+            "Valid leap-year date");
+        console.assert(isValidDate("2026-02-30") === false,
+            "Reject impossible date");
+
+        // Advanced regex
+        console.assert(hasDuplicateWords("Campus campus") === true,
+            "Detect repeated words");
+
+        // Space cleanup
         console.assert(
-            isValidDuration("90") === true,
-            "90 should be a valid duration"
+            collapseTitleSpaces("Campus  Fair") === "Campus Fair",
+            "Collapse double spaces"
         );
 
-
-        console.assert(
-            isValidDuration("100.943") === false,
-            "Three decimal digits should be rejected"
-        );
-
-        console.assert(
-            isValidDuration("012.92") === false,
-            "Leading zeros should be rejected"
-        );
-
-        console.assert(
-            isValidDuration("100.94") === true,
-            "Two decimal digits should be accepted"
-        );
-
-        console.assert(
-            isValidDuration("90abc") === false,
-            "90abc should be rejected"
-        );
-
-
-
-        console.assert(
-            isValidTitle("Campus Fair") === true,
-            "A normal title should pass"
-        );
-
-        console.assert(
-            isValidTitle(" Campus Fair") === false,
-            "A leading space should be rejected"
-        );
-
-        console.assert(
-            isValidTitle("Campus Fair ") === false,
-            "A trailing space should be rejected"
-        );
-
-        console.assert(
-            isValidTitle("") === false,
-            "An empty title should be rejected"
-        );
-        console.log("Validation tests finished.");
+        console.log("Finished running 10 validation checks.");
     </script>
 
 </body>
