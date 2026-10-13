@@ -10,14 +10,16 @@
 <body>
 
     <script type="module">
-        import { isValidDuration } from "./scripts/validators.js";
+        import {
+            isValidDuration,
+            isValidTitle
+        } from "./scripts/validators.js";
 
         console.assert(
             isValidDuration("90") === true,
             "90 should be a valid duration"
         );
 
-        console.log("Duration test finished.");
 
         console.assert(
             isValidDuration("100.943") === false,
@@ -34,6 +36,33 @@
             "Two decimal digits should be accepted"
         );
 
+        console.assert(
+            isValidDuration("90abc") === false,
+            "90abc should be rejected"
+        );
+
+
+
+        console.assert(
+            isValidTitle("Campus Fair") === true,
+            "A normal title should pass"
+        );
+
+        console.assert(
+            isValidTitle(" Campus Fair") === false,
+            "A leading space should be rejected"
+        );
+
+        console.assert(
+            isValidTitle("Campus Fair ") === false,
+            "A trailing space should be rejected"
+        );
+
+        console.assert(
+            isValidTitle("") === false,
+            "An empty title should be rejected"
+        );
+        console.log("Validation tests finished.");
     </script>
 
 </body>
