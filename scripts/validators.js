@@ -8,12 +8,14 @@ export function isValidTitle(value) {
     return pattern.test(value);
 }
 
-export function isValidTg(value) {
-    const pattern = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/
+export function isValidTag(value) {
+    const pattern = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/;
+    return pattern.test(value);
 }
 
 export function isValidDateFormat(value) {
-    const pattern = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
+    const pattern = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+    return pattern.test(value);
 }
 
 export function isValidDate(value) {
