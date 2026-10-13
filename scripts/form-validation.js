@@ -1,6 +1,8 @@
 import {
     isValidDuration,
     isValidTitle,
+    isValidTag,
+    isValidDate,
     hasDuplicateWords,
     collapseTitleSpaces
 } from "./validators.js";
@@ -49,4 +51,68 @@ titleInput.addEventListener("input", validateTitleField);
 titleInput.addEventListener("blur", function () {
     titleInput.value = collapseTitleSpaces(titleInput.value);
     validateTitleField();
+});
+
+
+const tagInput = document.querySelector("#event-tag");
+const tagError = document.querySelector("#tag-error");
+
+function validateTagField() {
+    const valid = isValidTag(tagInput.value);
+
+    if (valid) {
+        tagError.textContent = "";
+        tagInput.setAttribute("aria-invalid", "false");
+    } else {
+        tagError.textContent =
+            "Use letters separated by single spaces or hyphens.";
+        tagInput.setAttribute("aria-invalid", "true");
+    }
+}
+
+tagInput.addEventListener("input", validateTagField);
+tagInput.addEventListener("blur", validateTagField);
+
+const dateInput = document.querySelector("#event-date");
+const dateError = document.querySelector("#date-error");
+
+function validateDateField() {
+    const valid = isValidDate(dateInput.value);
+
+    if (valid) {
+        dateError.textContent = "";
+        dateInput.setAttribute("aria-invalid", "false");
+    } else {
+        dateError.textContent = "Choose a valid event date.";
+        dateInput.setAttribute("aria-invalid", "true");
+    }
+}
+
+dateInput.addEventListener("input", validateDateField);
+dateInput.addEventListener("blur", validateDateField);
+
+
+const createForm = document.querySelector("#create-form");
+const formStatus = document.querySelector("#form-status");
+
+createForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    titleInput.value = collapseTitleSpaces(titleInput.value);
+
+    validateTitleField();
+    validateDurationField();
+    validateTagField();
+    validateDateField();
+
+    const firstInvalid =
+        createForm.querySelector('[aria-invalid="true"]');
+
+    if (firstInvalid) {
+        formStatus.textContent = "Please correct the highlighted fields.";
+        firstInvalid.focus();
+    } else {
+        formStatus.textContent =
+            "Validation passed for title, duration, category, and date. Saving is not connected yet.";
+    }
 });

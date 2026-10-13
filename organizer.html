@@ -240,7 +240,6 @@
             </div>
         </section>
         <div id="create-event" popover class="admin-popup" role="dialog" aria-labelledby="create-event-heading">
-            <p id="duration-error" class="error" aria-live="polite"></p>
             <div class="popup-heading">
                 <h2 id="create-event-heading">Create event</h2><button type="button" class="table-action"
                     popovertarget="create-event" popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24"
@@ -249,14 +248,16 @@
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
                     </svg></button>
             </div>
-            <form class="admin-form" id="create-form">
+            <form class="admin-form" id="create-form" novalidate>
                 <div class="form-field full-field">
                     <label for="event-title">Event title</label>
                     <input id="event-title" name="title" required maxlength="120" aria-describedby="title-error">
                     <p id="title-error" class="error" aria-live="polite"></p>
                 </div>
-                <div class="form-field"><label for="event-date">Event date</label><input type="date" id="event-date"
-                        name="dueDate" required></div>
+                <div class="form-field"><label for="event-date">Event date</label>
+                    <input type="date" id="event-date" name="dueDate" aria-describedby="date-error" required>
+                    <p id="date-error" class="error" aria-live="polite"></p>
+                </div>
                 <div class="form-field"><label for="event-time">Start time</label><input type="time" id="event-time"
                         name="startTime" value="" required></div>
                 <div class="form-field"><label for="event-duration">Duration in minutes</label><input
@@ -264,9 +265,14 @@
                         aria-describedby="duration-help duration-error" required><small id="duration-help">For example,
                         90 or
                         45.50.</small>
+                    <p id="duration-error" class="error" aria-live="polite"></p>
+
                 </div>
-                <div class="form-field"><label for="event-tag">Category / tag</label><input id="event-tag" name="tag"
-                        placeholder="Careers" required></div>
+                <div class="form-field">
+                    <label for="event-tag">Category / tag</label>
+                    <input id="event-tag" name="tag" placeholder="Careers" aria-describedby="tag-error" required>
+                    <p id="tag-error" class="error" aria-live="polite"></p>
+                </div>
                 <div class="form-field"><label for="event-venue">Venue</label><input id="event-venue" name="venue"
                         required></div>
                 <div class="form-field"><label for="event-entry">Entry</label><select id="event-entry" name="entry">
@@ -277,7 +283,10 @@
                         name="registrationUrl" placeholder="https://"></div>
                 <div class="form-field full-field"><label for="event-description">Description</label><textarea
                         id="event-description" name="description" rows="4" required></textarea></div>
-                <div class="full-field"><button class="button-primary" type="submit" disabled>Save event</button></div>
+                <div class="full-field"><button class="button-primary" type="submit">Save
+                        event</button>
+                    <p id="form-status" role="status"></p>
+                </div>
             </form>
         </div>
         <div id="edit-1" popover class="admin-popup" role="dialog" aria-labelledby="edit-1-heading">
