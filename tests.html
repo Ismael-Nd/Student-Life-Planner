@@ -18,6 +18,22 @@
         );
 
         console.log("Duration test finished.");
+
+        console.assert(
+            isValidDuration("100.943") === false,
+            "Three decimal digits should be rejected"
+        );
+
+        console.assert(
+            isValidDuration("012.92") === false,
+            "Leading zeros should be rejected"
+        );
+
+        console.assert(
+            isValidDuration("100.94") === true,
+            "Two decimal digits should be accepted"
+        );
+
     </script>
 
 </body>
