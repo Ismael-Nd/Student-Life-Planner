@@ -240,6 +240,7 @@
             </div>
         </section>
         <div id="create-event" popover class="admin-popup" role="dialog" aria-labelledby="create-event-heading">
+            <p id="duration-error" class="error" aria-live="polite"></p>
             <div class="popup-heading">
                 <h2 id="create-event-heading">Create event</h2><button type="button" class="table-action"
                     popovertarget="create-event" popovertargetaction="hide" aria-label="Close"><svg viewBox="0 0 24 24"
@@ -249,15 +250,21 @@
                     </svg></button>
             </div>
             <form class="admin-form" id="create-form">
-                <div class="form-field full-field"><label for="event-title">Event title</label><input id="event-title"
-                        name="title" required maxlength="120"></div>
+                <div class="form-field full-field">
+                    <label for="event-title">Event title</label>
+                    <input id="event-title" name="title" required maxlength="120" aria-describedby="title-error">
+                    <p id="title-error" class="error" aria-live="polite"></p>
+                </div>
                 <div class="form-field"><label for="event-date">Event date</label><input type="date" id="event-date"
                         name="dueDate" required></div>
                 <div class="form-field"><label for="event-time">Start time</label><input type="time" id="event-time"
                         name="startTime" value="" required></div>
                 <div class="form-field"><label for="event-duration">Duration in minutes</label><input
-                        id="event-duration" name="duration" inputmode="decimal" aria-describedby="duration-help"
-                        required><small id="duration-help">For example, 90 or 45.50.</small></div>
+                        id="event-duration" name="duration" inputmode="decimal"
+                        aria-describedby="duration-help duration-error" required><small id="duration-help">For example,
+                        90 or
+                        45.50.</small>
+                </div>
                 <div class="form-field"><label for="event-tag">Category / tag</label><input id="event-tag" name="tag"
                         placeholder="Careers" required></div>
                 <div class="form-field"><label for="event-venue">Venue</label><input id="event-venue" name="venue"
@@ -476,7 +483,7 @@
         </div>
     </footer>
 
-    <script type="module" src="scripts/validators.js"></script>
+    <script type="module" src="scripts/form-validation.js"></script>
 
 </body>
 

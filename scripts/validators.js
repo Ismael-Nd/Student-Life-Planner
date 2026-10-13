@@ -1,18 +1,19 @@
 export function isValidDuration(value) {
-    const pattern = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
+    const pattern = /^(0|[1-9]\d*)(\.\d{1,2})?$/; 
     return pattern.test(value);
 }
 
 export function isValidTitle(value) {
-    const pattern = /^ \S(?:.*\S)? $/
+    const pattern = /^\S(?:.*\S)?$/;
+    return pattern.test(value);
 }
 
 export function isValidTg(value) {
-    const pattern = /^ [A-Za-z]+(?:[ -][A-Za-z]+)* $/
+    const pattern = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/
 }
 
 export function isValidDateFormat(value) {
-    const pattern = /^ \d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])  $/
+    const pattern = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
 }
 
 export function isValidDate(value) {
@@ -34,7 +35,7 @@ export function isValidDate(value) {
 }
 
 export function hasDuplicateWords(value) {
-    const pattern = / \b(\w+)\s+\1\b/i;
+    const pattern =  /\b(\w+)\s+\1\b/i;
     return pattern.test(value);
 }
 
