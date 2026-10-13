@@ -9,12 +9,15 @@
 
 <body>
 
-    <script>
-        import { isValidDuration } from "./validators.js";
+    <script type="module">
+        import { isValidDuration } from "./scripts/validators.js";
+
         console.assert(
             isValidDuration("90") === true,
             "90 should be a valid duration"
         );
+
+        console.log("Duration test finished.");
     </script>
 
 </body>
