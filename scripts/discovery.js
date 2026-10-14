@@ -1,24 +1,44 @@
 import { events } from "./events-data.js";
+import { compileRegex } from './search.js'
 
 const eventCount = document.querySelector("#event-count");
 const eventList = document.querySelector("#discovery-events");
-const categorySelect = document.querySelector("#categories")
+const categorySelect = document.querySelector("#categories");
+const searchInput = document.querySelector("#event-search");
+const searchError = document.querySelector("#filter-error");
+const ignoreCaseInput = document.querySelector("#ignore-case");
 
 
-categorySelect.addEventListener("change", function () {
-    const selectCategory = categorySelect.value;
+function filterEvents() {
+    try {
+        const pattern = compileRegex(searchInput.value, ignoreCaseInput.checked);
+        searchError.textContent = "";
 
-    if(selectCategory === "") {
-        renderEvents(events);
-    }else {
-        const filteredEvents = events.filter(function(event){
-            return event.tag === selectCategory;
+        const filteredEvents = events.filter(function (event) {
+            const matchesCategory =
+                categorySelect.value === "" ||
+                event.tag === categorySelect.value;
+
+            const searchableText =
+                event.title + " " +
+                event.description + " " +
+                event.tag + " " +
+                event.venue;
+
+            const matchesSearch = pattern.test(searchableText);
+
+            return matchesCategory && matchesSearch;
         });
 
         renderEvents(filteredEvents);
+    } catch {
+        searchError.textContent = "Enter a valid regex pattern.";
     }
-    
-});
+}
+
+searchInput.addEventListener("input", filterEvents);
+ignoreCaseInput.addEventListener("change", filterEvents);
+categorySelect.addEventListener("change", filterEvents);
 
 
 function createEventCard(event) {
@@ -114,5 +134,6 @@ renderEvents(events);
 
 const filterForm = document.querySelector("#discovery-filters");
 filterForm.addEventListener("reset", function () {
+    searchError.textContent = "";
     renderEvents(events);
-})
+});
