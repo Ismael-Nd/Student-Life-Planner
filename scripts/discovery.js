@@ -158,7 +158,7 @@ function createEventCard(event, pattern) {
     deleteButton.type = "button";
     deleteButton.className = "button-secondary";
     deleteButton.textContent = "Delete";
-    deleteButton.setAttribute("aria-lable", "Delete" + event.title);
+    deleteButton.setAttribute("aria-label", "Delete" + event.title);
 
     deleteButton.addEventListener("click", function () {
       if (!confirm("Delete" + event.title + "?")) return;
@@ -166,7 +166,7 @@ function createEventCard(event, pattern) {
       try {
         deleteEvent(event.id);
       } catch {
-        document.ATTRIBUTE_NODE.querySelector("#storage-status").textContent =
+        document.querySelector("#storage-status").textContent =
           "Could not delete the event.";
         return;
       }
@@ -178,6 +178,30 @@ function createEventCard(event, pattern) {
     });
 
     actions.append(deleteButton);
+
+    const editButton = document.createElement("button");
+    editButton.type = "button";
+    editButton.className = "button-secondary";
+    editButton.textContent = "Edit";
+
+    editButton.addEventListener("click", function (){
+      editingEvent = event;
+      createForm.reset();
+
+      for (const input of createForm.elements) {
+        if (input.name && event[input.name] !== undefined) {
+          input.value = event[input.name];
+        }
+      }
+
+      createForm.elements.entry.value = 
+        event.price === 0 ? "Free" : "Paid";
+
+      document.querySelector("#create-event").showPopover();
+    });
+
+    actions.append(editButton);
+
   }
 
   content.append(tag, title, description, details, actions);
@@ -216,6 +240,15 @@ filterForm.addEventListener("reset", function () {
 });
 
 const createForm = document.querySelector("#create-form");
+
+let editingEvent = null;
+
+createEventButton.addEventListener("click", function() {
+  editingEvent = null;
+  createForm.reset();
+});
+
+
 
 
 
@@ -263,7 +296,17 @@ function saveNewEvent(form) {
   };
 
   try {
-    addEvent(newEvent);
+    if(editingEvent) {
+      for (const name of [
+        "id", "createdAt", "image",
+        "organizerId", "popularity", "recentInterest"
+      ]) {
+        newEvent[name] = editingEvent[name];
+      }
+      updateEvent(newEvent);
+    }else {
+      addEvent(newEvent);
+    }
   } catch {
     message.textContent = "Could not save. Your entered value are kept.";
     return;
@@ -278,7 +321,7 @@ function saveNewEvent(form) {
   filterEvents();
 
   document.querySelector("#create-event").hidePopover();
-  document.querySelector("#storage-status").textContent = "Event created.";
+  document.querySelector("#storage-status").textContent = "Event saved.";
   createEventButton.focus();
 }
 
