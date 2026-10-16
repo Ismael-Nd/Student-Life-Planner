@@ -9,9 +9,7 @@ try {
     const saved = loadEvents();
     
     if (saved !== null) {
-        events = saved.filter(function (event){
-            return event.id.startsWith("rec_")
-        })
+        events = saved;
 
     }
 } catch {
@@ -38,4 +36,9 @@ export function deleteEvent(id) {
     const nextEvents = events.filter(function (event) { return event.id !== id; });
     saveEvents(nextEvents);
     events = nextEvents;
+}
+
+export function replaceEvents(records) {
+    saveEvents(records);
+    events = records;
 }

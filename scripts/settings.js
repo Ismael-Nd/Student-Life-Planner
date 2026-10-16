@@ -1,4 +1,5 @@
-import { events } from "./state.js";
+import { events, replaceEvents } from "./state.js";
+import { loadEvents } from "./storage.js"
 
 const unitSelect = document.querySelector("#display-unit");
 const unitStatus = document.querySelector("#unit-status");
@@ -48,5 +49,31 @@ exportButton.addEventListener("click", function() {
         dataStatus.textContent = "Event backup downlaoded.";
     }catch {
         dataStatus.textContent = "The backup could not be downloaded.";
+    }
+});
+
+const importButton = document.querySelector("#import-json");
+const fileInput = document.querySelector("#json-import");
+
+
+importButton.addEventListener("click", async function () {
+    const file = fileInput.files[0];
+
+    if (!file) {
+        dataStatus.textContent = "Choose a JSON file first.";
+        return;
+    }
+
+    try {
+        const text = await file.text();
+        const records = loadEvents(text);
+
+        if (!confirm ("Replace your events with this backup?")) return;
+
+        replaceEvents(records);
+        dataStatus.textContent = records.length + " events importde.";
+    
+    } catch (error) {
+        dataStatus.textContent = "Import failed: " + error.message;
     }
 });
