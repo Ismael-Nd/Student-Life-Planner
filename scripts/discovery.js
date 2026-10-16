@@ -1,4 +1,4 @@
-import { addEvent, events, storageWarning } from "./state.js";
+import { addEvent, events, storageWarning, deleteEvent, updateEvent } from "./state.js";
 import { setupFormValidation } from "./form-validation.js";
 import { isValidDuration } from "./validators.js";
 import { organizers } from "./events-data.js";
@@ -152,6 +152,34 @@ function createEventCard(event, pattern) {
   saveButton.append(icon);
 
   actions.append(rsvpButton, saveButton);
+
+  if (isAdmin) {
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "button-secondary";
+    deleteButton.textContent = "Delete";
+    deleteButton.setAttribute("aria-lable", "Delete" + event.title);
+
+    deleteButton.addEventListener("click", function () {
+      if (!confirm("Delete" + event.title + "?")) return;
+
+      try {
+        deleteEvent(event.id);
+      } catch {
+        document.ATTRIBUTE_NODE.querySelector("#storage-status").textContent =
+          "Could not delete the event.";
+        return;
+      }
+      filterEvents();
+
+      document.querySelector("#storage-status").textContent = "Event deleted.";
+
+      createEventButton.focus();
+    });
+
+    actions.append(deleteButton);
+  }
+
   content.append(tag, title, description, details, actions);
   card.append(image, content);
 
@@ -187,33 +215,9 @@ filterForm.addEventListener("reset", function () {
   filterEvents();
 });
 
-// Keep recommendation content in sync with the saved record list.
-const slides = document.querySelectorAll("#carousel-slides .recommended");
-for (let index = 0; index < slides.length; index++) {
-  const record = events[index];
-  const slide = slides[index];
-  if (!record) {
-    slide.hidden = true;
-    continue;
-  }
-  slide.querySelector("img").src = record.image || "assets/event-default.svg";
-  slide.querySelector("h3").textContent = record.title;
-  slide.querySelector(".event-tag").textContent = record.tag;
-  slide.querySelector(".recommended-description > p").textContent =
-    record.description;
-  const facts = slide.querySelectorAll("dd");
-  facts[0].textContent = record.dueDate;
-  facts[1].textContent = record.duration + " minutes";
-  facts[2].textContent = record.venue;
-  const host = organizers.find(function (organizer) {
-    return organizer.id === record.organizerId;
-  });
-  facts[3].textContent = host ? host.name : "Campus administration";
-  facts[4].textContent = record.price === 0 ? "Free" : "Paid";
-}
-document.querySelector("#recommended").hidden = events.length === 0;
-
 const createForm = document.querySelector("#create-form");
+
+
 
 function saveNewEvent(form) {
   const fields = form.elements;
@@ -250,7 +254,7 @@ function saveNewEvent(form) {
     startTime: fields.startTime.value,
     price: paid ? Number(fields.price.value) : 0,
     registrationUrl: registrationUrl,
-    organizerId: "carrers",
+    organizerId: "careers",
     image: "assets/event-default.svg",
     popularity: 0,
     recentInterest: 0,
