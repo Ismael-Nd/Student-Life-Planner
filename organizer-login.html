@@ -8,16 +8,12 @@
     <h1>Campus Life Planner</h1></div>
     <nav aria-label="Main navigation">
         <a href="organizer-login.html" aria-current="page">Login</a>
-        <a href="index.html#about">About</a>
     </nav>
 </header
 ><main id="main-content" tabindex="-1"><div class="login-intro">
-    <p class="eyebrow">YOUR CAMPUS, CONNECTED</p>
     <h2>Welcome back.</h2>
     <p class="muted">Sign in to manage your campus events and attendees.</p>
 </div>
-<p class="prototype-note">Design preview only. No accounts are authenticated and no credentials are stored. Use the preview links to explore each page.</p>
-<div class="login-grid single-login">
     <section class="admin-panel" aria-labelledby="organizer-heading">
         <span class="event-tag">Organizer account</span>
         <h2 id="organizer-heading">Login as an organizer</h2>
@@ -29,9 +25,9 @@
             <label for="organizer-password">Password</label>
             <input type="password" id="organizer-password" autocomplete="current-password" required>
         </div>
-        <button class="button-primary" type="submit" disabled>Login</button>
+        <button class="button-primary" type="submit" >Login</button>
+        <p id="login-error" role="alert"></p>
     </form>
-    <a class="preview-link" href="index.html">Preview organizer dashboard ↗</a>
 </section>
 </div>
 <p class="account-switch">Student account? <a href="login.html">Go to student login ↗</a></p>

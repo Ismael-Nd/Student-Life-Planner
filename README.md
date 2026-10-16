@@ -139,7 +139,7 @@ Open `tests.html` through Live Server. Its 16 assertions cover validation, calen
 | M3 — Forms & Regex Validation | 15% | Complete |
 | M4 — Rendering, Sorting & Regex Search | 20% | Complete |
 | M5 — Statistics & Targets | 15% | Complete |
-| M6 — Persistence, Import/Export & Settings | 15% | Layouts ready; integration In progress |
+| M6 — Persistence, Import/Export & Settings | 15% | complete |
 | M7 — Polish & Accessibility Audit | 15% | Pending |
 
 ## Credits

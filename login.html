@@ -17,23 +17,18 @@
     </div>
     <nav aria-label="Main navigation">
         <a href="login.html" aria-current="page">Login</a>
-        <a href="index.html#about">About</a>
     </nav>
 </header>
 <main id="main-content" tabindex="-1">
     <div class="login-intro">
-        <p class="eyebrow">YOUR CAMPUS, CONNECTED</p>
+
         <h2>Welcome back.</h2>
         <p class="muted">Sign in to discover campus events and save your favourites.</p>
     </div>
-    <p class="prototype-note">Design preview only.
-         No accounts are authenticated and no credentials are stored.
-          Use the preview links to explore each page.</p>
     <div class="login-grid single-login">
         <section class="admin-panel" aria-labelledby="student-heading">
             <span class="event-tag">Student account</span>
             <h2 id="student-heading">Login as a student</h2>
-            <p class="muted">Discover campus events and keep your favourites together.</p>
             <form>
                 <div class="form-field">
                     <label for="student-email">Email address</label>
@@ -42,9 +37,9 @@
                     <label for="student-password">Password</label>
                     <input type="password" id="student-password" autocomplete="current-password" required>
                 </div>
-                <button class="button-primary" type="submit" disabled>Login</button>
+                <button class="button-primary" type="submit">Login</button>
+                <p id="login-error" role="alert"></p>
             </form>
-            <a class="preview-link" href="index.html">Preview student dashboard ↗</a>
         </section>
     </div>
     <p class="account-switch">Organizer account? <a href="organizer-login.html">Go to organizer login ↗</a></p>
