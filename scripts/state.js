@@ -1,4 +1,3 @@
-// import { events as sampleEvents } from "./events-data.js";
 import { loadEvents, saveEvents } from "./storage.js";
 
 export let events = [];

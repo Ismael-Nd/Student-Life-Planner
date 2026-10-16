@@ -1,6 +1,5 @@
 import { events } from "./state.js";
 import { showWeeklyChart } from "./discovery.js"
-import { saveEvents } from "./storage.js";
 
 let totalMinutes = 0;
 
