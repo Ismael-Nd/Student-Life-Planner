@@ -998,8 +998,48 @@
         padding: 1.75rem;
     }
 }
-.student-page .case-toggle { display: flex; align-items: center; gap: .5rem; min-height: 44px; font-size: .75rem; color: var(--muted); }
-.student-page .case-toggle input { width: 16px; min-height: 16px; height: 16px; margin: 0; accent-color: var(--navy); }
-.student-page .search:has(.case-toggle) .search-icon { top: 22px; }
+.student-page .case-toggle { 
+    display: flex; 
+    align-items: 
+    center; 
+    gap: .5rem; 
+    min-height: 44px; 
+    font-size: .75rem; 
+    color: var(--muted); 
+}
+.student-page .case-toggle input 
+{ width: 16px; 
+    min-height: 16px; 
+    height: 16px; 
+    margin: 0; 
+    accent-color: var(--navy); 
+}
+.student-page .search:has(.case-toggle) .search-icon { 
+    top: 22px; 
+}
 
-.student-page mark { background: #ffe19a; color: #172b4d; border-radius: 2px; padding: 0 .05em; }
+.student-page mark { 
+    background: #ffe19a; 
+    color: #172b4d; 
+    border-radius: 2px; 
+    padding: 0 .05em; 
+}
+
+.student-page .chart-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.student-page .chart-row span {
+    flex: 0 0 210px;
+    font-size: 0.85rem;
+}
+
+.student-page .chart-row progress {
+    flex: 1 1 150px;
+    min-width: 0;
+    accent-color: var(--navy);
+}

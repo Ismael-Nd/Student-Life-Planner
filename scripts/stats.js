@@ -1,4 +1,5 @@
 import { events } from "./state.js";
+import { showWeeklyChart } from "./discovery.js"
 
 let totalMinutes = 0;
 
@@ -29,3 +30,6 @@ for (const event of events) {
 }
 
 document.querySelector("#top-category").textContent = topCategory;
+
+
+showWeeklyChart(); 

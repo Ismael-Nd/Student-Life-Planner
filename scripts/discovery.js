@@ -5,6 +5,9 @@ import { organizers } from "./events-data.js";
 import { sortEvents } from "./sorting.js";
 import { compileRegex, highlightMatch } from "./search.js";
 
+if (document.body.dataset.page === "discover") {
+
+
 const role = sessionStorage.getItem("role");
 const isAdmin = role === "admin";
 
@@ -327,4 +330,54 @@ function saveNewEvent(form) {
 
 if (isAdmin) {
   setupFormValidation(createForm, saveNewEvent);
+}
+
+}
+
+export function showWeeklyChart() {
+  const chart = document.querySelector("#weekly-chart");
+  const days = [];
+  let highestMinutes = 1;
+
+  for (let i = 6; i >= 0; i--) {
+    const day = new Date();
+    day.setDate(day.getDate()- i);
+
+    const date = 
+      day.getFullYear() + "-" + 
+      String(day.getMonth() + 1).padStart(2, "0") + "-" +
+      String(day.getDate()).padStart(2, "0");
+
+      let minutes = 0;
+
+      for (const event of events) {
+        if (event.dueDate === date) {
+          minutes = minutes + event.duration
+        }
+      }
+
+      days.push({ date:date, minutes: minutes });
+
+      if (minutes > highestMinutes) {
+        highestMinutes = minutes;
+      }
+  }
+
+  chart.replaceChildren();
+
+  for (const day of days) {
+    const row = document.createElement("div");
+    row.className = "chart-row";
+
+    const label = document.createElement("span");
+    label.textContent = day.date + ":" + day.minutes + "min";
+
+    const bar = document.createElement("progress");
+    bar.max = highestMinutes;
+    bar.value = day.minutes;
+    bar.setAttribute("aria-label", label.textContent);
+
+    row.append(label, bar);
+    chart.append(row);
+  }
 }
