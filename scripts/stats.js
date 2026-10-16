@@ -10,6 +10,9 @@ for (const event of events) {
 document.querySelector("#total-records").textContent = events.length;
 document.querySelector("#total-duration").textContent = totalMinutes;
 
+document.querySelector("#total-hours").textContent = 
+    (totalMinutes / 60).toFixed(2);
+
 
 let topCategory = "-";
 let highestCount = 0;
