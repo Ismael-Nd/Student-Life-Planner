@@ -141,9 +141,9 @@ Open `tests.html` through Live Server. Its 16 assertions cover validation, calen
 | M1 — Specification & Wireframes | 10% | Specification and design planning established |
 | M2 — Semantic HTML & Base CSS | 10% | Complete |
 | M3 — Forms & Regex Validation | 15% | Complete |
-| M4 — Rendering, Sorting & Regex Search | 20% | In progress |
-| M5 — Statistics & Targets | 15% | Layouts ready; calculations pending |
-| M6 — Persistence, Import/Export & Settings | 15% | Layouts ready; integration pending |
+| M4 — Rendering, Sorting & Regex Search | 20% | Complete |
+| M5 — Statistics & Targets | 15% | Complete |
+| M6 — Persistence, Import/Export & Settings | 15% | Layouts ready; integration In progress |
 | M7 — Polish & Accessibility Audit | 15% | Pending |
 
 ## Credits
