@@ -72,3 +72,30 @@ importButton.addEventListener("click", async function () {
     dataStatus.textContent = "Import failed: " + error.message;
   }
 });
+
+// Loads validated demo events and skips IDs already saved in this browser.
+document.querySelector("#load-demo").addEventListener("click", async function () {
+  try {
+    const response = await fetch("seed.json");
+    if (!response.ok) throw new Error("The demo file could not be loaded.");
+    const demoEvents = loadEvents(await response.text());
+    const nextEvents = events.slice();
+    let added = 0;
+
+    for (const demo of demoEvents) {
+      // Checks whether this demo event is already in the list.
+      const exists = nextEvents.some(function (event) {
+        return event.id === demo.id;
+      });
+      if (!exists) {
+        nextEvents.push(demo);
+        added++;
+      }
+    }
+
+    replaceEvents(nextEvents);
+    dataStatus.textContent = added + " demo events added. Open Discover to see them.";
+  } catch (error) {
+    dataStatus.textContent = "Demo loading failed: " + error.message;
+  }
+});

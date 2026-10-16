@@ -1,6 +1,6 @@
 # Campus Life Planner
 
-Campus Life Planner helps students find campus events without searching through emails. Students can browse events and organizer profiles, while administrators have a workspace for managing event listings.
+Campus Life Planner helps students find campus events without searching through emails. Students can browse events, while administrators have a workspace for managing event listings.
 
 Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** theme of the Building Responsive UI assignment.
 
@@ -15,8 +15,7 @@ Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** the
 | Page | Purpose |
 | --- | --- |
 | `index.html` | Event discovery, recommendations, and About |
-| `my-events.html` | Saved events and planning overview |
-| `organizers.html` | Organizer profiles |
+| `my-events.html` | Event statistics, time cap, and seven-day chart |
 | `organizer.html` | Administration dashboard and event forms |
 | `login.html` | Student login |
 | `organizer-login.html` | Organizer login |
@@ -24,7 +23,7 @@ Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** the
 
 ## Features
 
-- Nine sample campus events with posters, categories, dates, durations, and venues.
+- Ten demo events can be loaded from Settings; existing records are kept.
 - Recommended-event carousel layout.
 - Category, entry, and sort dropdowns with a reset control.
 - Compact administration table with RSVP counts and icon actions.
@@ -42,7 +41,7 @@ M2 and M3 are implemented. M4 rendering, filtering, sorting, regex search, and c
 
 Create and Edit validate the form before saving. New records receive unique IDs and timestamps. Editing preserves the creation timestamp and updates updatedAt. Deletion requires confirmation. Records are saved in localStorage and shared by Discover and the administration page on the same origin. Initial events, RSVP counts, attendee names, and the chart use sample data.
 
-Regex search, category/entry filters, and date/title/duration sorting are connected. Search highlights all matches in event titles, descriptions, categories, and venues. Bookmarking, calculated statistics, time conversions, and JSON import/export remain in development. Login and Logout are navigation previews without authentication. `tests.html` is included; final `seed.json` is still pending.
+Regex search, category/entry filters, and date/title/duration sorting are connected. Search highlights all matches in event titles, descriptions, categories, and venues. Calculated statistics, time caps, duration units, and validated JSON import/export are available. Settings includes a Load demo events button that adds missing sample events without replacing existing records. Login and Logout are navigation previews without authentication. `tests.html` and a ten-record `seed.json` are included.
 
 Only the administration interface contains event creation controls. A production version needs backend authentication, permission checks, and shared storage. localStorage works within one browser and origin; it does not share data between different users' devices. External registration links alone cannot provide RSVP counts or attendee lists.
 
@@ -71,13 +70,10 @@ scripts/
   search.js            Regex compilation and safe highlighting
   discovery.js         Discovery rendering and filters
   admin.js             Administration table and record actions
-  bookmarks.js         Bookmark storage helper
-  student-ui.js        UI module
 assets/                Event posters, textures, and icon license
 docs/                  Specifications, milestone reviews, and references
 ```
 
-The bookmark storage helper and UI module are not currently connected to the page layouts.
 
 ## Validation rules
 
@@ -161,7 +157,6 @@ Ismail — n.ismael@alustudent.com
 ## Submission requirements remaining
 
 - Complete the required functionality and assertion tests.
-- Include `seed.json` with at least ten diverse records.
 - Deploy to GitHub Pages and confirm public access.
 - Include a 2–3 minute demo video.
 - Confirm that the repository has only the author's GitHub account in its contribution history.

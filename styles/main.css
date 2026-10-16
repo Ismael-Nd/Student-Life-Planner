@@ -550,35 +550,6 @@
     font-size: .85rem;
 }
 
-.student-page .bookmark-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 44px;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 8px;
-    border: 1px solid var(--navy);
-    border-radius: 9px;
-    background: transparent;
-    color: var(--navy);
-}
-
-.student-page .bookmark-button svg {
-    width: 19px;
-    height: 19px;
-}
-
-.student-page .bookmark-button[aria-pressed='true'] svg {
-    fill: currentColor;
-}
-
-.student-page .bookmark-button:hover {
-    background: #e6edf6;
-}
-
 .student-page .recommended .card-actions {
     max-width: 400px;
 }
@@ -600,33 +571,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-}
-
-.student-page .organizer-profile {
-    flex: 1 1 200px;
-    text-align: center;
-    padding: 1.5rem;
-    background: #f9fafc;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-}
-
-.student-page .organizer-profile img {
-    width: 72px;
-    height: 72px;
-    border-radius: 20px;
-}
-
-.student-page .organizer-profile h3 {
-    margin: 1rem 0 .5rem;
-    font-size: .95rem;
-}
-
-.student-page .organizer-profile p {
-    color: var(--navy);
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin: 0;
 }
 
 .student-page #about {
@@ -758,16 +702,6 @@
 .student-page .event-card .event-tag {
     background: #002e6d0a;
     color: var(--navy);
-}
-
-.student-page .event-card .bookmark-button {
-    border-color: var(--navy);
-    color: var(--navy);
-    background: transparent;
-}
-
-.student-page .event-card .bookmark-button:hover {
-    background: #e6edf6;
 }
 
 .student-page .event-card :focus-visible {

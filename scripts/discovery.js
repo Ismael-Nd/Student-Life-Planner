@@ -158,27 +158,7 @@ if (document.body.dataset.page === "discover") {
       window.open(link, "_blank", "noopener, noreferrer");
     });
 
-    const saveButton = document.createElement("button");
-    saveButton.type = "button";
-    saveButton.className = "bookmark-button card-save";
-    saveButton.setAttribute("aria-label", "Bookmark " + event.title);
-    saveButton.setAttribute("aria-pressed", "false");
-    saveButton.disabled = true;
-
-    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    icon.setAttribute("viewBox", "0 0 24 24");
-    icon.setAttribute("fill", "none");
-    icon.setAttribute("stroke", "currentColor");
-    icon.setAttribute("stroke-width", "1.8");
-    icon.setAttribute("aria-hidden", "true");
-
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", "M6 3h12v18l-6-4-6 4V3Z");
-
-    icon.append(path);
-    saveButton.append(icon);
-
-    actions.append(rsvpButton, saveButton);
+    actions.append(rsvpButton);
 
     if (isAdmin) {
       const deleteButton = document.createElement("button");

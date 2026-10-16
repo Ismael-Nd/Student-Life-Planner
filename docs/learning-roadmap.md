@@ -56,7 +56,7 @@ Calculate record count, duration total, top tag, and the last-seven-days trend. 
 
 ## M6 — Persistence and settings
 
-Auto-save records and settings to localStorage. Validate JSON imports before loading, support export, convert minutes/hours, and persist bookmarks. Handle malformed data and unavailable storage.
+Auto-save records and settings to localStorage. Validate JSON imports before loading, support export, convert minutes/hours. Handle malformed data and unavailable storage.
 
 localStorage is shared only within one browser and origin. Real accounts, shared event data, and administration permissions require a backend.
 
