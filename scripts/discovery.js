@@ -1,4 +1,4 @@
-import { events, storageWarning } from "./state.js";
+import { addEvent, events, storageWarning } from "./state.js";
 import { setupFormValidation } from "./form-validation.js";
 import { isValidDuration } from "./validators.js";
 import { organizers } from "./events-data.js";
@@ -9,13 +9,12 @@ const role = sessionStorage.getItem("role");
 const isAdmin = role === "admin";
 
 if (isAdmin) {
-    document.querySelector("#dashboard-heading").textContent = 
-        "Manage campus events";
-    document.body.classList.add("admin-page")
+  document.querySelector("#dashboard-heading").textContent =
+    "Manage campus events";
+  document.body.classList.add("admin-page");
 }
 
-const createEventButton = 
-    document.querySelector("#create-event-button");
+const createEventButton = document.querySelector("#create-event-button");
 
 createEventButton.hidden = !isAdmin;
 
@@ -30,37 +29,40 @@ const sortSelect = document.querySelector("#event-sort");
 const emptyMessage = document.querySelector("#events-empty");
 document.querySelector("#storage-status").textContent = storageWarning;
 
-
 function filterEvents() {
-    try {
-        const pattern = compileRegex(searchInput.value, ignoreCaseInput.checked);
-        searchError.textContent = "";
+  try {
+    const pattern = compileRegex(searchInput.value, ignoreCaseInput.checked);
+    searchError.textContent = "";
 
-        const filteredEvents = events.filter(function (event) {
-            const matchesCategory =
-                categorySelect.value === "" ||
-                event.tag === categorySelect.value;
+    const filteredEvents = events.filter(function (event) {
+      const matchesCategory =
+        categorySelect.value === "" || event.tag === categorySelect.value;
 
-            const searchableText =
-                event.title + " " +
-                event.description + " " +
-                event.tag + " " +
-                event.venue;
+      const searchableText =
+        event.title +
+        " " +
+        event.description +
+        " " +
+        event.tag +
+        " " +
+        event.venue;
 
-            const matchesSearch = !pattern || pattern.test(searchableText);
-            const matchesEntry = entrySelect.value === "" ||
-                (entrySelect.value === "free" && event.price === 0) ||
-                (entrySelect.value === "paid" && event.price > 0);
+      const matchesSearch = !pattern || pattern.test(searchableText);
+      const matchesEntry =
+        entrySelect.value === "" ||
+        (entrySelect.value === "free" && event.price === 0) ||
+        (entrySelect.value === "paid" && event.price > 0);
 
-            return matchesCategory && matchesSearch && matchesEntry;
-        });
+      return matchesCategory && matchesSearch && matchesEntry;
+    });
 
-        renderEvents(sortEvents(filteredEvents, sortSelect.value), pattern);
-        searchInput.setAttribute("aria-invalid", "false");
-    } catch {
-        searchError.textContent = "Enter a valid regex pattern. The previous results are still displayed.";
-        searchInput.setAttribute("aria-invalid", "true");
-    }
+    renderEvents(sortEvents(filteredEvents, sortSelect.value), pattern);
+    searchInput.setAttribute("aria-invalid", "false");
+  } catch {
+    searchError.textContent =
+      "Enter a valid regex pattern. The previous results are still displayed.";
+    searchInput.setAttribute("aria-invalid", "true");
+  }
 }
 
 searchInput.addEventListener("input", filterEvents);
@@ -69,139 +71,213 @@ categorySelect.addEventListener("change", filterEvents);
 entrySelect.addEventListener("change", filterEvents);
 sortSelect.addEventListener("change", filterEvents);
 
-
 function createEventCard(event, pattern) {
+  const card = document.createElement("article");
+  card.className = "event-card";
+  card.dataset.eventId = event.id;
 
-    const card = document.createElement("article");
-    card.className = "event-card";
-    card.dataset.eventId = event.id;
-    
-    const image = document.createElement("img");
-    image.className = "event-cover";
-    image.src = event.image || "assets/event-default.svg";
-    image.alt = "";
-    
-    const content = document.createElement("div");
-    content.className = "event-card-content";
-    
-    const title = document.createElement("h3");
-    if (pattern) {
-        highlightMatch(title, event.title, pattern);
-    } else {
-        title.textContent = event.title;
-    }
-    
-    const description = document.createElement("p");
-    description.className = "event-summary";
-    highlightMatch(description, event.description, pattern);
-    
+  const image = document.createElement("img");
+  image.className = "event-cover";
+  image.src = event.image || "assets/event-default.svg";
+  image.alt = "";
 
-    const tag = document.createElement("span");
-    tag.className = "event-tag";
-    highlightMatch(tag, event.tag, pattern);
+  const content = document.createElement("div");
+  content.className = "event-card-content";
 
-    const details = document.createElement("p");
-    details.className = "event-meta";
+  const title = document.createElement("h3");
+  if (pattern) {
+    highlightMatch(title, event.title, pattern);
+  } else {
+    title.textContent = event.title;
+  }
 
-    const date = document.createElement("time");
-    date.dateTime = event.dueDate;
-    date.textContent = event.dueDate;
+  const description = document.createElement("p");
+  description.className = "event-summary";
+  highlightMatch(description, event.description, pattern);
 
-    const venue = document.createElement("span");
-    highlightMatch(venue, event.venue, pattern);
+  const tag = document.createElement("span");
+  tag.className = "event-tag";
+  highlightMatch(tag, event.tag, pattern);
 
-    const host = organizers.find(function (organizer) { return organizer.id === event.organizerId; });
-    const organizer = document.createElement("span");
-    organizer.textContent = "By " + (host ? host.name : "Campus administration");
-    const entry = event.price === 0 ? "Free" : "Paid";
-    details.append(date, " · " + event.duration + " min · " + entry, venue, organizer);
+  const details = document.createElement("p");
+  details.className = "event-meta";
 
-    const actions = document.createElement("div");
-    actions.className = "card-actions";
+  const date = document.createElement("time");
+  date.dateTime = event.dueDate;
+  date.textContent = event.dueDate;
 
-    const rsvpButton = document.createElement("button");
-    rsvpButton.type = "button";
-    rsvpButton.className = "button-primary card-rsvp";
-    rsvpButton.textContent = "RSVP ↗";
-    rsvpButton.disabled = true;
+  const venue = document.createElement("span");
+  highlightMatch(venue, event.venue, pattern);
 
-    const saveButton = document.createElement("button");
-    saveButton.type = "button";
-    saveButton.className = "bookmark-button card-save";
-    saveButton.setAttribute("aria-label", "Bookmark " + event.title);
-    saveButton.setAttribute("aria-pressed", "false");
-    saveButton.disabled = true;
+  const host = organizers.find(function (organizer) {
+    return organizer.id === event.organizerId;
+  });
+  const organizer = document.createElement("span");
+  organizer.textContent = "By " + (host ? host.name : "Campus administration");
+  const entry = event.price === 0 ? "Free" : "Paid";
+  details.append(
+    date,
+    " · " + event.duration + " min · " + entry,
+    venue,
+    organizer,
+  );
 
-    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    icon.setAttribute("viewBox", "0 0 24 24");
-    icon.setAttribute("fill", "none");
-    icon.setAttribute("stroke", "currentColor");
-    icon.setAttribute("stroke-width", "1.8");
-    icon.setAttribute("aria-hidden", "true");
+  const actions = document.createElement("div");
+  actions.className = "card-actions";
 
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", "M6 3h12v18l-6-4-6 4V3Z");
+  const rsvpButton = document.createElement("button");
+  rsvpButton.type = "button";
+  rsvpButton.className = "button-primary card-rsvp";
+  rsvpButton.textContent = "RSVP ↗";
+  rsvpButton.disabled = true;
 
-    icon.append(path);
-    saveButton.append(icon);
+  const saveButton = document.createElement("button");
+  saveButton.type = "button";
+  saveButton.className = "bookmark-button card-save";
+  saveButton.setAttribute("aria-label", "Bookmark " + event.title);
+  saveButton.setAttribute("aria-pressed", "false");
+  saveButton.disabled = true;
 
-    actions.append(rsvpButton, saveButton);
-    content.append(tag, title, description, details, actions);
-    card.append(image, content);
+  const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  icon.setAttribute("viewBox", "0 0 24 24");
+  icon.setAttribute("fill", "none");
+  icon.setAttribute("stroke", "currentColor");
+  icon.setAttribute("stroke-width", "1.8");
+  icon.setAttribute("aria-hidden", "true");
 
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", "M6 3h12v18l-6-4-6 4V3Z");
 
+  icon.append(path);
+  saveButton.append(icon);
 
+  actions.append(rsvpButton, saveButton);
+  content.append(tag, title, description, details, actions);
+  card.append(image, content);
 
-    return card;
+  return card;
 }
 
 function renderEvents(eventArray, pattern = null) {
-    eventList.replaceChildren(); 
-    
-    for (const event of eventArray) {
-        const card = createEventCard(event, pattern);
-        eventList.append(card);
-    }
+  eventList.replaceChildren();
 
-    eventCount.textContent = eventArray.length + (eventArray.length === 1 ? " event" : " events");
-    emptyMessage.hidden = eventArray.length !== 0;
+  for (const event of eventArray) {
+    const card = createEventCard(event, pattern);
+    eventList.append(card);
+  }
+
+  eventCount.textContent =
+    eventArray.length + (eventArray.length === 1 ? " event" : " events");
+  emptyMessage.hidden = eventArray.length !== 0;
 }
-
 
 filterEvents();
 
-
 const filterForm = document.querySelector("#discovery-filters");
-filterForm.addEventListener("submit", function (event) { event.preventDefault(); });
+filterForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+});
 filterForm.addEventListener("reset", function () {
-    // Explicit defaults are set before rendering; native reset happens after this event.
-    searchInput.value = "";
-    categorySelect.value = "";
-    entrySelect.value = "";
-    sortSelect.value = "trending";
-    ignoreCaseInput.checked = true;
-    filterEvents();
+  // Explicit defaults are set before rendering; native reset happens after this event.
+  searchInput.value = "";
+  categorySelect.value = "";
+  entrySelect.value = "";
+  sortSelect.value = "trending";
+  ignoreCaseInput.checked = true;
+  filterEvents();
 });
 
 // Keep recommendation content in sync with the saved record list.
 const slides = document.querySelectorAll("#carousel-slides .recommended");
 for (let index = 0; index < slides.length; index++) {
-    const record = events[index];
-    const slide = slides[index];
-    if (!record) { slide.hidden = true; continue; }
-    slide.querySelector("img").src = record.image || "assets/event-default.svg";
-    slide.querySelector("h3").textContent = record.title;
-    slide.querySelector(".event-tag").textContent = record.tag;
-    slide.querySelector(".recommended-description > p").textContent = record.description;
-    const facts = slide.querySelectorAll("dd");
-    facts[0].textContent = record.dueDate;
-    facts[1].textContent = record.duration + " minutes";
-    facts[2].textContent = record.venue;
-    const host = organizers.find(function (organizer) { return organizer.id === record.organizerId; });
-    facts[3].textContent = host ? host.name : "Campus administration";
-    facts[4].textContent = record.price === 0 ? "Free" : "Paid";
+  const record = events[index];
+  const slide = slides[index];
+  if (!record) {
+    slide.hidden = true;
+    continue;
+  }
+  slide.querySelector("img").src = record.image || "assets/event-default.svg";
+  slide.querySelector("h3").textContent = record.title;
+  slide.querySelector(".event-tag").textContent = record.tag;
+  slide.querySelector(".recommended-description > p").textContent =
+    record.description;
+  const facts = slide.querySelectorAll("dd");
+  facts[0].textContent = record.dueDate;
+  facts[1].textContent = record.duration + " minutes";
+  facts[2].textContent = record.venue;
+  const host = organizers.find(function (organizer) {
+    return organizer.id === record.organizerId;
+  });
+  facts[3].textContent = host ? host.name : "Campus administration";
+  facts[4].textContent = record.price === 0 ? "Free" : "Paid";
 }
 document.querySelector("#recommended").hidden = events.length === 0;
 
+const createForm = document.querySelector("#create-form");
 
-const create
+function saveNewEvent(form) {
+  const fields = form.elements;
+  const message = form.querySelector("#form-status");
+  const paid = fields.entry.value === "Paid";
+
+  if (
+    paid &&
+    (!isValidDuration(fields.price.value) || Number(fields.price.value) <= 0)
+  ) {
+    message.textContent = "Enter a valid price greater than zero";
+    fields.price.focus();
+    return;
+  }
+
+  const registrationUrl = fields.registrationUrl.value;
+
+  if (registrationUrl && !/^https?:\/\//i.test(registrationUrl)) {
+    message.textContent = "Use an http:// or https:// registration link.";
+    fields.registrationUrl.focus();
+    return;
+  }
+
+  const now = new Date().toISOString();
+
+  const newEvent = {
+    id: "rec_" + Date.now() + "_" + Math.random().toString(36).slice(2),
+    title: fields.title.value,
+    description: fields.description.value,
+    dueDate: fields.dueDate.value,
+    duration: Number(fields.duration.value),
+    tag: fields.tag.value,
+    venue: fields.venue.value,
+    startTime: fields.startTime.value,
+    price: paid ? Number(fields.price.value) : 0,
+    registrationUrl: registrationUrl,
+    organizerId: "carrers",
+    image: "assets/event-default.svg",
+    popularity: 0,
+    recentInterest: 0,
+    createdAt: now,
+    updatedAt: now,
+  };
+
+  try {
+    addEvent(newEvent);
+  } catch {
+    message.textContent = "Could not save. Your entered value are kept.";
+    return;
+  }
+
+  form.reset();
+  message.textContent = "";
+
+  searchInput.value = "";
+  categorySelect.value = "";
+  entrySelect.value = "";
+  filterEvents();
+
+  document.querySelector("#create-event").hidePopover();
+  document.querySelector("#storage-status").textContent = "Event created.";
+  createEventButton.focus();
+}
+
+if (isAdmin) {
+  setupFormValidation(createForm, saveNewEvent);
+}
