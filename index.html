@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discover — Campus Life Planner</title>
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet"
+    <link rel="stylesheet" x
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="styles/organizer.css">
 </head>
 
 <body class="student-page" data-page="discover"><a href="#main-content" class="skip-link">Skip to main content</a>
@@ -20,13 +21,92 @@
                 href="index.html#about">About</a><a href="settings.html">Settings</a><a href="login.html">Logout</a>
         </nav>
     </header>
+
+    <div id="create-event" popover class="admin-popup" role="dialog" aria-labelledby="create-event-heading">
+        <div class="popup-heading">
+            <h2 id="create-event-heading">Create Event</h2>
+            <button type="button" class="table-action" popovertarget="create-event" popovertargetaction="hide"
+                aria-label="Close">x
+            </button>
+        </div>
+
+        <form class="admin-form" id="create-form" novalidate>
+
+            <div class="form-field full-field">
+                <label for="event-title">Event title</label>
+                <input id="event-title" name="title" maxlength="120" aria-describedby="title-error" required>
+                <p id="title-error" class="error" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+                <label for="event-date">Event Date</label>
+                <input type="date" id="event-date" name="dueDate" aria-describedby="date-error" required>
+                <p id="date-error" class="error" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+                <label for="event-price">Entry Price (0 for free)</label>
+                <input id="event-price" name="price" type="text" inputmode="decimal" value="0" required
+                    aria-describedby="event-price-error">
+                <p id="event-price-error" class="error" role="status"></p>
+            </div>
+
+            <div class="form-field">
+                <label for="event-time">Start time</label>
+                <input type="time" id="event-time" name="startTime" value="" required>
+            </div>
+            <div class="form-field">
+                <label for="event-duration">Duration in munites</label>
+                <input name="duration" id="event-duration" inputmode="decimal"
+                    aria-describedby="duration-help duration-error" required>
+                <small id="duration-help">For Example, 90 or 45.50</small>
+                <p id="duration-error" class="error" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+                <label for="event-tag">Catergory / tag</label>
+                <input name="tag" id="event-tag" placeholder="Careers" aria-describedby="tag-error" required>
+                <p id="tag-error" class="error" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+                <label for="event-venue">Venue</label>
+                <input id="event-venue" name="venue" required>
+            </div>
+
+            <div class="form-field">
+                <label for="event-entry">Entry</label>
+                <select id="event-entry" name="entry">
+                    <option>Free</option>
+                    <option>Paid</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="event-url">Registration link</label>
+                <input type="url" id="event-url" name="registrationUrl" placeholder="https://">
+            </div>
+            <div class="form-field full-field">
+                <label for="event-description">Description</label>
+                <textarea name="description" id="event-description" rows="4" required></textarea>
+            </div>
+            <div class="full-field">
+                <button class="button-primary" type="submit">Save event</button>
+                <p id="form-status" role="status"></p>
+            </div>
+        </form>
+    </div>
+
     <main id="main-content" tabindex="-1">
         <div class="page-topbar">
             <div>
                 <p class="eyebrow">CAMPUS LIFE</p>
-                <h2>Discover campus events</h2>
+                <h2 id="dashboard-heading">Discover campus events</h2>
             </div>
-            <div class="page-actions"><a class="button-primary" href="#events">Discover events ↗</a></div>
+            <div class="page-actions">
+                <a class="button-primary" href="#events">Discover events ↗</a>
+                <button id="create-event-button" class="button-primary" type="button" popovertarget="create-event"
+                    hidden>Create Event +</button>
+            </div>
         </div>
         <section id="recommended" aria-labelledby="recommended-heading">
             <div class="section-heading">
@@ -129,13 +209,14 @@
         </section>
         <section id="events" aria-labelledby="events-heading">
             <div class="section-heading">
-                <h2 id="events-heading">Discover events</h2><span id="event-count" class="muted small">9 events</span>
+                <h2 id="events-heading">Discover events</h2><span id="event-count" role="status" class="muted small">9
+                    events</span>
             </div>
             <form id="discovery-filters" class="search-filter" role="search" aria-label="Find campus events">
                 <div class="search"><label class="visually-hidden" for="event-search">Search events</label><input
-                        type="search" id="event-search" placeholder="Search events, organisers, venues"><svg
-                        class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                        aria-hidden="true">
+                        type="search" id="event-search" aria-describedby="filter-error"
+                        placeholder="Search events, organisers, venues"><svg class="search-icon" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                         <circle cx="10.5" cy="10.5" r="6.5" />
                         <path d="m16 16 5 5" />
                     </svg>
@@ -165,160 +246,22 @@
                             <option value="popular">Most popular</option>
                             <option value="newest">Newest</option>
                             <option value="oldest">Oldest</option>
+                            <option value="date-asc">Date: earliest first</option>
+                            <option value="date-desc">Date: latest first</option>
+                            <option value="title-asc">Title: A–Z</option>
+                            <option value="title-desc">Title: Z–A</option>
+                            <option value="duration-asc">Duration: shortest first</option>
+                            <option value="duration-desc">Duration: longest first</option>
                         </select></div><button type="reset" class="button-secondary filter-reset">Reset</button>
                 </div>
             </form>
             <p id="filter-error" class="error" role="alert"></p>
-            <div id="discovery-events" class="event-list">
-                <article class="event-card" data-event-id="event-1" data-category="Careers">
-                    <img class="event-cover" src="assets/event-1.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Careers</span>
-                        <h3>Campus Careers Fair</h3>
-                        <p class="event-summary">Meet employers and explore internship opportunities.</p>
-                        <p class="event-meta"><time datetime="2026-10-14">14 October</time> · 120 min ·
-                            Free<span>Student Centre</span><span>By Careers Office</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark Campus Careers Fair" aria-pressed="false" disabled><svg
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-                <article class="event-card" data-event-id="event-2" data-category="Workshop">
-                    <img class="event-cover" src="assets/event-2.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Workshop</span>
-                        <h3>CV Clinic</h3>
-                        <p class="event-summary">Build a stronger CV with practical feedback from peers.</p>
-                        <p class="event-meta"><time datetime="2026-10-12">12 October</time> · 60 min ·
-                            Free<span>Learning Hub</span><span>By Careers Office</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark CV Clinic" aria-pressed="false" disabled><svg viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-                <article class="event-card" data-event-id="event-3" data-category="Social">
-                    <img class="event-cover" src="assets/event-3.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Social</span>
-                        <h3>Student Community Mixer</h3>
-                        <p class="event-summary">Meet fellow students and make new campus connections.</p>
-                        <p class="event-meta"><time datetime="2026-10-16">16 October</time> · 90 min · Free<span>Campus
-                                Courtyard</span><span>By Student Council</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark Student Community Mixer" aria-pressed="false" disabled><svg
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-                <article class="event-card" data-event-id="event-4" data-category="Sports">
-                    <img class="event-cover" src="assets/event-4.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Sports</span>
-                        <h3>Campus Football Session</h3>
-                        <p class="event-summary">Take a study break and join a friendly afternoon game.</p>
-                        <p class="event-meta"><time datetime="2026-10-10">10 October</time> · 75 min · Free<span>Campus
-                                Field</span><span>By Campus Sports</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark Campus Football Session" aria-pressed="false" disabled><svg
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-                <article class="event-card" data-event-id="event-5" data-category="Workshop">
-                    <img class="event-cover" src="assets/event-5.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Workshop</span>
-                        <h3>Build Your First Website</h3>
-                        <p class="event-summary">Turn a simple idea into a website with a hands-on coding session.</p>
-                        <p class="event-meta"><time datetime="2026-10-17">17 October</time> · 120 min ·
-                            Free<span>Computer Lab</span><span>By Student Council</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark Build Your First Website" aria-pressed="false" disabled><svg
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-                <article class="event-card" data-event-id="event-6" data-category="Arts">
-                    <img class="event-cover" src="assets/event-6.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Arts</span>
-                        <h3>Creative Open Mic</h3>
-                        <p class="event-summary">Share a poem, a song, or a story with your campus community.</p>
-                        <p class="event-meta"><time datetime="2026-10-23">23 October</time> · 90 min · Paid<span>Student
-                                Lounge</span><span>By Student Council</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark Creative Open Mic" aria-pressed="false" disabled><svg
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-                <article class="event-card" data-event-id="event-7" data-category="Wellbeing">
-                    <img class="event-cover" src="assets/event-7.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Wellbeing</span>
-                        <h3>Morning Mindfulness</h3>
-                        <p class="event-summary">Start the day with a gentle guided mindfulness practice.</p>
-                        <p class="event-meta"><time datetime="2026-10-11">11 October</time> · 30 min · Free<span>Garden
-                                Terrace</span><span>By Campus Sports</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark Morning Mindfulness" aria-pressed="false" disabled><svg
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-                <article class="event-card" data-event-id="event-8" data-category="Masterclass">
-                    <img class="event-cover" src="assets/event-8.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Masterclass</span>
-                        <h3>Founders Masterclass</h3>
-                        <p class="event-summary">Explore how founders turn student projects into sustainable ventures.
-                        </p>
-                        <p class="event-meta"><time datetime="2026-10-21">21 October</time> · 150 min ·
-                            Paid<span>Auditorium</span><span>By Careers Office</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark Founders Masterclass" aria-pressed="false" disabled><svg
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-                <article class="event-card" data-event-id="event-9" data-category="Sports">
-                    <img class="event-cover" src="assets/event-9.svg" alt="" loading="lazy">
-                    <div class="event-card-content"><span class="event-tag">Sports</span>
-                        <h3>Weekend Run Club</h3>
-                        <p class="event-summary">An easy-paced campus run followed by coffee and conversation.</p>
-                        <p class="event-meta"><time datetime="2026-10-24">24 October</time> · 45 min · Free<span>Campus
-                                Gate</span><span>By Campus Sports</span></p>
-                        <div class="card-actions"><button type="button" class="button-primary card-rsvp" disabled>RSVP
-                                ↗</button><button type="button" class="bookmark-button card-save"
-                                aria-label="Bookmark Weekend Run Club" aria-pressed="false" disabled><svg
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    aria-hidden="true">
-                                    <path d="M6 3h12v18l-6-4-6 4V3Z" />
-                                </svg></button></div>
-                    </div>
-                </article>
-            </div>
-            <div id="discovery-empty" class="empty-state" hidden>
-                <h3>No matching events</h3>
-                <p>Try another search, category, or date range.</p>
-            </div>
+            <div id="discovery-events" class="event-list"></div>
+            <p id="events-empty" class="empty-state" hidden>No events match your search and filters.</p>
+            <p id="storage-status" role="status"></p>
+            <noscript>
+                <p>Enable JavaScript to view and search events.</p>
+            </noscript>
         </section>
         <section id="about" aria-labelledby="about-heading">
             <h2 id="about-heading">Campus life, all in one place.</h2>
@@ -344,6 +287,7 @@
                 accounts require a backend. This project is not an official ALU service.</p>
         </section>
     </main>
+
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><img src="White_WOName.png" alt="" width="40" height="40">
@@ -368,7 +312,7 @@
         <p id="dialog-status" role="status"></p>
     </dialog>
     <p id="ui-status" class="visually-hidden" role="status"></p>
-    <script type="module" src="scripts/discovery.js" ></script>
+    <script type="module" src="scripts/discovery.js"></script>
 </body>
 
 </html>

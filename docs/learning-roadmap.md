@@ -1,15 +1,15 @@
 # Learning roadmap — Campus Life Planner
 
-## Current stage: M3 complete, M4 next
+## Current stage: M4 implemented; final browser check next
 
-The HTML/CSS layouts and form-validation implementation are complete. Event rendering and data changes are the next stage.
+HTML/CSS layouts, form validation, record rendering, filtering, sorting, regex search, and create/edit/delete are implemented. Final browser verification is next, followed by M5 statistics and targets.
 
 | Milestone | Weight | Status |
 | --- | --- | --- |
 | M1 — Specification & Wireframes | 10% | Theme, roles, and design planning established; review final specification and sketches |
 | M2 — Semantic HTML & Base CSS | 10% | Complete |
 | M3 — Forms & Regex Validation | 15% | Implementation complete; run the assertion page before committing |
-| M4 — Rendering, Sorting & Regex Search | 20% | Next |
+| M4 — Rendering, Sorting & Regex Search | 20% | Implemented; final Live Server verification pending |
 | M5 — Statistics & Targets | 15% | Layout ready; calculations pending |
 | M6 — Persistence, Import/Export & Settings | 15% | Layout ready; integration pending |
 | M7 — Polish & Accessibility Audit | 15% | Pending |
@@ -34,15 +34,19 @@ The HTML/CSS layouts and form-validation implementation are complete. Event rend
 
 Validation does not save an event. The forms currently report whether the four connected fields pass.
 
-## M4 — Next lessons
+## M4 — Implemented
 
-1. Understand the event objects and array in scripts/events-data.js.
-2. Render one event, then the full list, using DOM methods.
-3. Connect record creation, editing, and deletion with unique IDs and timestamps.
-4. Add category and entry filters.
-5. Sort by date, title, and duration in both directions.
-6. Compile live regex search with try/catch and a case-insensitive toggle.
-7. Highlight matches safely with mark elements and provide empty/error states.
+- Records render through DOM methods from a shared data module.
+- Category and Free/Paid filters combine with regex search.
+- Date, title, and duration sorting work in both directions; sample trending/popularity and creation-date sorts remain available.
+- Invalid regex reports an error and preserves previous results; case-insensitive search is optional.
+- All non-empty matches in titles, descriptions, tags, and venues use safe mark elements.
+- Empty-result and record-count feedback update with filters.
+- Administration records create/edit/delete with unique IDs, preserved createdAt, updated timestamps, and delete confirmation.
+- A minimal localStorage helper shares changes between the separate pages. Full import/export and settings persistence remain M6.
+- tests.html now includes 16 essential validation/search/sorting assertions.
+
+Code-level checks passed for filter combinations, six required sort directions, case/error/reset handling, multiple safe highlights, valid/invalid submissions, create/edit/delete, cross-page reload, and failed storage writes. The automated browser could not reach the local server; final browser checks must be run through Live Server.
 
 Build each part in small steps: explain the concept, add the code, and test the behaviour.
 

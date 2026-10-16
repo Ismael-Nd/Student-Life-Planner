@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test file</title>
+    <title>Validation and M4 Tests</title>
 </head>
 
 <body>
+    <main><h1>Validation and event tests</h1><p>Open the Console. Any failed assertion appears as an error.</p><p id="test-status" role="status">Running tests…</p></main>
 
     <script type="module">
         import {
@@ -18,6 +19,10 @@
             hasDuplicateWords,
             collapseTitleSpaces
         } from "./scripts/validators.js";
+
+        import { compileRegex, highlightMatch } from "./scripts/search.js";
+        import { sortEvents } from "./scripts/sorting.js";
+        import { events } from "./scripts/events-data.js";
 
         // Duration
         console.assert(isValidDuration("45.50") === true,
@@ -53,7 +58,20 @@
             "Collapse double spaces"
         );
 
-        console.log("Finished running 10 validation checks.");
+        // M4 essentials
+        console.assert(compileRegex("campus", true).test("CAMPUS"), "Ignore case matches");
+        console.assert(!compileRegex("campus", false).test("CAMPUS"), "Exact case differs");
+        let rejectedPattern = false;
+        try { compileRegex("["); } catch { rejectedPattern = true; }
+        console.assert(rejectedPattern, "Invalid regex is rejected");
+        console.assert(sortEvents(events, "duration-asc")[0].duration === 30, "Shortest duration first");
+        console.assert(sortEvents(events, "duration-desc")[0].duration === 150, "Longest duration first");
+        const title = document.createElement("h3");
+        highlightMatch(title, "Campus campus <img>", /campus/i);
+        console.assert(title.querySelectorAll("mark").length === 2 && title.textContent === "Campus campus <img>" && !title.querySelector("img"), "All matches highlighted; text is not treated as HTML");
+
+        document.querySelector("#test-status").textContent = "Finished running 16 checks. Check the Console for assertion errors.";
+        console.log("Finished running 16 checks.");
     </script>
 
 </body>

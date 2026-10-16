@@ -1001,3 +1001,5 @@
 .student-page .case-toggle { display: flex; align-items: center; gap: .5rem; min-height: 44px; font-size: .75rem; color: var(--muted); }
 .student-page .case-toggle input { width: 16px; min-height: 16px; height: 16px; margin: 0; accent-color: var(--navy); }
 .student-page .search:has(.case-toggle) .search-icon { top: 22px; }
+
+.student-page mark { background: #ffe19a; color: #172b4d; border-radius: 2px; padding: 0 .05em; }

@@ -7,7 +7,7 @@ import {
     collapseTitleSpaces
 } from "./validators.js";
 
-function setupFormValidation(form) {
+export function setupFormValidation(form, onValid) {
     const durationInput = form.querySelector('[name="duration"]');
     const durationError = form.querySelector('[id^="duration-error"]');
 
@@ -112,14 +112,16 @@ function setupFormValidation(form) {
             formStatus.textContent = "Please correct the highlighted fields.";
             firstInvalid.focus();
         } else {
-            formStatus.textContent =
-                "Validation passed for title, duration, category, and date. Saving is not connected yet.";
+            const otherInvalid = form.querySelector(":invalid");
+            if (otherInvalid) {
+                formStatus.textContent = "Complete the required fields with valid values.";
+                otherInvalid.reportValidity();
+                otherInvalid.focus();
+                return;
+            }
+            onValid(form);
         }
     });
 }
 
-setupFormValidation(document.querySelector("#create-form"));
-setupFormValidation(document.querySelector("#edit-form-1"));
 
-setupFormValidation(document.querySelector("#edit-form-2"));
-setupFormValidation(document.querySelector("#edit-form-3"));

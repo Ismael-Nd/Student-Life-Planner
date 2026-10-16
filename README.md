@@ -38,11 +38,11 @@ Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** the
 
 ## Current status
 
-M2 HTML/CSS layouts are complete. M3 form validation is in progress.
+M2 and M3 are implemented. M4 rendering, filtering, sorting, regex search, and create/edit/delete are implemented; final Live Server checks are pending.
 
-The create form validates its title, duration, category, and date fields. Event saving is not connected. Event listings, RSVP counts, attendee names, and the chart use sample data.
+Create and Edit validate the form before saving. New records receive unique IDs and timestamps. Editing preserves the creation timestamp and updates updatedAt. Deletion requires confirmation. Records are saved in localStorage and shared by Discover and the administration page on the same origin. Initial events, RSVP counts, attendee names, and the chart use sample data.
 
-Search, filtering, sorting, bookmarks, calculated statistics, time conversions, localStorage integration, and JSON import/export are still in development. Login and Logout are navigation previews without authentication. The dedicated `tests.html` page and final `seed.json` are not yet included.
+Regex search, category/entry filters, and date/title/duration sorting are connected. Search highlights all matches in event titles, descriptions, categories, and venues. Bookmarking, calculated statistics, time conversions, and JSON import/export remain in development. Login and Logout are navigation previews without authentication. `tests.html` is included; final `seed.json` is still pending.
 
 Only the administration interface contains event creation controls. A production version needs backend authentication, permission checks, and shared storage. localStorage works within one browser and origin; it does not share data between different users' devices. External registration links alone cannot provide RSVP counts or attendee lists.
 
@@ -65,6 +65,12 @@ scripts/
   validators.js        Field validation rules
   form-validation.js   Create-form validation and feedback
   events-data.js       Sample event data
+  state.js             Shared event records and add/update/delete
+  storage.js           Browser record save/load
+  sorting.js           Event ordering
+  search.js            Regex compilation and safe highlighting
+  discovery.js         Discovery rendering and filters
+  admin.js             Administration table and record actions
   bookmarks.js         Bookmark storage helper
   student-ui.js        UI module
 assets/                Event posters, textures, and icon license
@@ -124,9 +130,9 @@ Manual checks are available in the Create event form on `organizer.html`:
 5. Enter `Sports2` as category, then change it to `Campus Life`. The error appears and clears.
 6. Clear the date and leave the field, then select a valid date. The error appears and clears.
 7. Submit invalid fields. Errors appear and the first invalid field receives focus.
-8. Submit valid title, duration, category, and date values. A validation confirmation appears; no event is saved.
+8. Complete all required fields and submit. The event appears in the administration table; open Discover on the same origin to see it. Edit its title and save, then check Discover again. Use Delete and confirm to remove it.
 
-Automated assertions in `tests.html` are planned for M3, including leap-year and impossible-date cases.
+Open `tests.html` through Live Server. Its 16 assertions cover validation, calendar dates, case handling, invalid regex, numeric sorting, and safe highlighting. The page shows when execution finishes; inspect the Console for any assertion errors.
 
 ## Milestones
 
