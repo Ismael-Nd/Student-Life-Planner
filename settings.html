@@ -27,6 +27,18 @@
                 <h2>Settings</h2>
             </div>
         </div>
+        <section class="settings-panel" aria-labelledby="units-heading">
+            <h2 id="units-heading">Duration units</h2>
+
+            <label for="display-unit">Display duration in</label>
+            <select name="" id="display-unit">
+                <option value="minutes">Minutes</option>
+                <option value="hours">Hours</option>
+            </select>
+
+            <p id="unit-status" role="status"></p>
+
+        </section>
         <section class="settings-panel" aria-labelledby="data-heading">
             <h2 id="data-heading">Your data</h2>
             <p>Keep a JSON backup of your plans or import a previous backup.</p>
@@ -53,6 +65,7 @@
                     href="https://github.com/Ismail-Nd">Built by Ismail ↗</a></div>
         </div>
     </footer>
+    <script type="module" src="scripts/settings.js" ></script>
 </body>
 
 </html>

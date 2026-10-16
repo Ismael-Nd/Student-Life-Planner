@@ -8,11 +8,25 @@ for (const event of events) {
 }
 
 document.querySelector("#total-records").textContent = events.length;
-document.querySelector("#total-duration").textContent = totalMinutes;
 
-document.querySelector("#total-hours").textContent = 
-    (totalMinutes / 60).toFixed(2);
+let unit = "minutes"; 
 
+try {
+    if (localStorage.getItem("campus:unit") === "hours") {
+        unit = "hours";
+    }
+}catch {
+    console.warn("The saved unit could not be laoded.");
+}
+
+if (unit === "hours") {
+    document.querySelector("#total-duration").textContent = 
+        (totalMinutes / 60).toFixed(2);
+} else {
+    document.querySelector("#total-duration").textContent = totalMinutes;
+}
+
+document.querySelector("#duration-unit").textContent = unit;
 
 let topCategory = "-";
 let highestCount = 0;
