@@ -7,7 +7,7 @@ Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** the
 ## Links
 
 - [Repository](https://github.com/Ismael-Nd/Student-Life-Planner)
-- GitHub Pages: deployment pending. Expected URL: https://ismael-nd.github.io/Student-Life-Planner/
+- GitHub Pages: URL: https://ismael-nd.github.io/Student-Life-Planner/
 - Demo video: coming soon.
 
 ## Pages
@@ -37,8 +37,6 @@ Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** the
 - Responsive layouts, visible keyboard focus, a skip link, and reduced-motion styling.
 
 ## Current status
-
-M1–M6 are implemented. M7 is in progress: documentation, final verification, accessibility checks, deployment, and the demo video.
 
 New records receive unique IDs and creation/update timestamps. Editing preserves the ID and creation timestamp and updates `updatedAt`. Deletion requires confirmation. Discover and Overview use the same records saved in localStorage on the same origin. Overview calculates statistics from those records.
 
