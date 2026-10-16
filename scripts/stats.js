@@ -62,7 +62,7 @@ try {
     if(savedCap !==null) {
         capInput.value = savedCap;
 
-        if(capInput.value === "" || !capInput.checkVisibility()) {
+        if(capInput.value === "" || !capInput.checkValidity()) {
             capInput.value = "300";
         }
     }
@@ -102,15 +102,5 @@ capInput.addEventListener("change", function () {
 
 capInput.addEventListener("input", updateCap);
 
-capInput.addEventListener("change", function () {
-    if (capInput.value === "" || !capInput.checkValidity()) return;
-
-    try {
-        localStorage.setItem("campus:time-cap", capInput.value);
-    }catch {
-        overageMessage.textContent = "The rime cap could not be saved."
-    }
-
-});
 
 updateCap();
