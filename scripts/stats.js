@@ -39,11 +39,25 @@ const capInput = document.querySelector("#time-cap");
 const remainingMessage = document.querySelector("#cap-remaining");
 const overageMessage = document.querySelector("#cap-overage");
 
+try {
+    const savedCap = localStorage.getItem("campus:time-cap");
+
+    if(savedCap !==null) {
+        capInput.value = savedCap;
+
+        if(capInput.value === "" || !capInput.checkVisibility()) {
+            capInput.value = "300";
+        }
+    }
+} catch {
+    console.warn("The saved time cap could not be loaded.");
+}
+
 function updateCap () {
     remainingMessage.textContent = "";
     overageMessage.textContent = "";
 
-    if(capInput.value === "" || !capInput.checkVisibility()) {
+    if(capInput.value === "" || !capInput.checkValidity()) {
         overageMessage.textContent = "Enter zero or more minutes.";
         return;
     } 
@@ -52,12 +66,34 @@ function updateCap () {
 
     if (remaining >=0 ) {
         remainingMessage.textContent =
-            remaining.toFixed(2) + "minutes remaining.";
+            remaining.toFixed(2) + " minutes remaining.";
     }else {
         overageMessage.textContent = 
-            Math.abs(remaining).toFixed(2) + "minutes over the cap.";
+            Math.abs(remaining).toFixed(2) + " minutes over the cap.";
     }
 }
 
+capInput.addEventListener("change", function () {
+    if (capInput.value === "" || !capInput.checkValidity()) return;
+
+    try {
+        localStorage.setItem("campus:time-cap", capInput.value);
+    }catch {
+        overageMessage.textContent = "The time cap could not be saved.";
+    }
+});
+
 capInput.addEventListener("input", updateCap);
+
+capInput.addEventListener("change", function () {
+    if (capInput.value === "" || !capInput.checkValidity()) return;
+
+    try {
+        localStorage.setItem("campus:time-cap", capInput.value);
+    }catch {
+        overageMessage.textContent = "The rime cap could not be saved."
+    }
+
+});
+
 updateCap();
