@@ -14,43 +14,45 @@ Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** the
 
 | Page | Purpose |
 | --- | --- |
-| `index.html` | Event discovery, recommendations, and About |
+| `index.html` | Shared event dashboard with discovery, administrator controls, and About |
 | `my-events.html` | Event statistics, time cap, and seven-day chart |
-| `organizer.html` | Administration dashboard and event forms |
 | `login.html` | Student login |
 | `organizer-login.html` | Organizer login |
-| `settings.html` | Time target, duration units, and data backup controls |
+| `settings.html` | Duration units, JSON backups, and demo events |
 
 ## Features
 
-- Ten demo events can be loaded from Settings; existing records are kept.
-- Recommended-event carousel layout.
-- Category, entry, and sort dropdowns with a reset control.
-- Compact administration table with RSVP counts and icon actions.
-- Pop-ups for creating and editing events, viewing attendees, and confirming deletion.
-- Separate student and organizer login forms.
-- Planning dashboard layout with duration totals, top category, weekly target, and seven-day chart.
-- Create-form validation for title, duration, category, and date.
-- Repeated-word detection and automatic collapse of repeated title spaces.
+- Create, edit, and delete events through administrator controls on the shared dashboard.
+- Event cards with titles, descriptions, categories, dates, durations, venues, and registration links.
+- Live regex search with case sensitivity control, invalid-pattern feedback, and highlighted matches.
+- Category and free/paid filters, sorting by date, title, or duration, and a reset control.
+- Form validation for title, duration, category, and calendar date, including repeated-word detection.
 - Inline error messages and focus on the first invalid field during submission.
-- Responsive layouts at mobile, tablet, and desktop sizes.
+- Statistics for total records, total duration, top category, and activity over the last seven days.
+- A saved time cap with remaining-time and overage announcements.
+- Duration display in minutes or hours.
+- Automatic record saving in localStorage and validated JSON import/export.
+- Ten demo events loaded on demand from Settings without replacing existing events.
+- Separate student and organizer login forms with email and password format validation.
+- Responsive layouts, visible keyboard focus, a skip link, and reduced-motion styling.
 
 ## Current status
 
-M2 and M3 are implemented. M4 rendering, filtering, sorting, regex search, and create/edit/delete are implemented; final Live Server checks are pending.
+M1–M6 are implemented. M7 is in progress: documentation, final verification, accessibility checks, deployment, and the demo video.
 
-Create and Edit validate the form before saving. New records receive unique IDs and timestamps. Editing preserves the creation timestamp and updates updatedAt. Deletion requires confirmation. Records are saved in localStorage and shared by Discover and the administration page on the same origin. Initial events, RSVP counts, attendee names, and the chart use sample data.
+New records receive unique IDs and creation/update timestamps. Editing preserves the ID and creation timestamp and updates `updatedAt`. Deletion requires confirmation. Discover and Overview use the same records saved in localStorage on the same origin. Overview calculates statistics from those records.
 
-Regex search, category/entry filters, and date/title/duration sorting are connected. Search highlights all matches in event titles, descriptions, categories, and venues. Calculated statistics, time caps, duration units, and validated JSON import/export are available. Settings includes a Load demo events button that adds missing sample events without replacing existing records. Login and Logout are navigation previews without authentication. `tests.html` and a ten-record `seed.json` are included.
+Login validates email and password format and selects a browser-session role. It does not authenticate accounts. Administrator controls appear when the organizer role is selected. Logout currently links to the student login page; it does not clear the session role. These controls are a prototype and are not secure permission checks.
 
-Only the administration interface contains event creation controls. A production version needs backend authentication, permission checks, and shared storage. localStorage works within one browser and origin; it does not share data between different users' devices. External registration links alone cannot provide RSVP counts or attendee lists.
+localStorage is limited to one browser and origin. A production version needs backend authentication, permission checks, and shared storage. RSVP opens an organizer's registration link when provided; external registration links do not provide attendee lists or RSVP counts to this app.
 
 ## Run locally
 
 1. Clone or download the repository.
 2. Open the folder in VS Code.
 3. Start Live Server on `index.html`.
-4. Open `organizer.html` to try the create form.
+4. Open `organizer-login.html`, complete the form, then use **Create event** on the dashboard.
+5. To try sample content, open **Settings → Load demo events**, then return to Discover.
 
 Use a local HTTP server because the JavaScript uses ES modules. No framework, build step, or API key is required.
 
@@ -69,9 +71,13 @@ scripts/
   sorting.js           Event ordering
   search.js            Regex compilation and safe highlighting
   discovery.js         Discovery rendering and filters
-  admin.js             Administration table and record actions
+  stats.js             Statistics, seven-day chart call, and time cap
+  settings.js          Duration preferences, JSON backups, and demo loading
+  login.js             Login format validation and session role selection
 assets/                Event posters, textures, and icon license
-docs/                  Specifications, milestone reviews, and references
+docs/                  Specification and learning roadmap
+seed.json              Ten demo event records
+tests.html             Validation, search, sorting, and highlighting checks
 ```
 
 
@@ -100,7 +106,7 @@ Date validation also checks calendar components, so dates such as `2026-02-30` a
 | Arrow keys | Navigate native dropdown options |
 | Escape | Close an event pop-up |
 
-The first focusable link skips to the main content. Submitting invalid fields moves focus to the first invalid field. The administration table has a focusable horizontal scroll region on narrow screens.
+The first focusable link skips to the main content. Submitting invalid fields moves focus to the first invalid field. Native dropdowns can be operated with the keyboard.
 
 ## Accessibility
 
@@ -109,15 +115,15 @@ The first focusable link skips to the main content. Submitting invalid fields mo
 - Accessible names for icon-only buttons.
 - Error and help text connected through `aria-describedby`.
 - `aria-invalid` identifies invalid fields.
-- Polite live regions announce errors; form feedback uses `role="status"`.
+- Status regions announce saved changes and remaining time; alert regions announce invalid regex and time-cap overages.
 - Visible focus outlines and reduced-motion styling.
 - Decorative images and icons are excluded from screen-reader output.
 
-All seven pages were checked at 360px, 768px, and 1024px for page overflow. Field labels, duplicate IDs, skip-link focus, and pop-up keyboard controls were also checked. A full contrast and screen-reader audit is planned for M7.
+The five application pages were manually checked at 360px, 768px, and 1024px. Keyboard navigation was also checked. A full contrast and screen-reader audit remains pending.
 
 ## Testing
 
-Manual checks are available in the Create event form on `organizer.html`:
+Open `organizer-login.html`, complete the login form, then select **Create event** on the shared dashboard for these manual checks:
 
 1. Enter `90abc` as duration, then change it to `90`. The error appears and clears.
 2. Enter ` Campus Fair` as title. An edge-space error appears.
@@ -126,7 +132,10 @@ Manual checks are available in the Create event form on `organizer.html`:
 5. Enter `Sports2` as category, then change it to `Campus Life`. The error appears and clears.
 6. Clear the date and leave the field, then select a valid date. The error appears and clears.
 7. Submit invalid fields. Errors appear and the first invalid field receives focus.
-8. Complete all required fields and submit. The event appears in the administration table; open Discover on the same origin to see it. Edit its title and save, then check Discover again. Use Delete and confirm to remove it.
+8. Complete all required fields and submit. The event appears in Discover. Edit its title and save, then refresh to check persistence. Use Delete and confirm to remove it.
+9. In Settings, export the records and import the exported file. Refresh Discover and confirm the records remain. Try malformed JSON and confirm the error leaves existing records intact.
+10. Change the duration unit in Settings and the time cap in Overview. Refresh and check that both preferences remain saved.
+11. Load demo events twice. Existing events should remain, and the second load should add no duplicate demo records.
 
 Open `tests.html` through Live Server. Its 16 assertions cover validation, calendar dates, case handling, invalid regex, numeric sorting, and safe highlighting. The page shows when execution finishes; inspect the Console for any assertion errors.
 
@@ -139,24 +148,17 @@ Open `tests.html` through Live Server. Its 16 assertions cover validation, calen
 | M3 — Forms & Regex Validation | 15% | Complete |
 | M4 — Rendering, Sorting & Regex Search | 20% | Complete |
 | M5 — Statistics & Targets | 15% | Complete |
-| M6 — Persistence, Import/Export & Settings | 15% | complete |
-| M7 — Polish & Accessibility Audit | 15% | Pending |
+| M6 — Persistence, Import/Export & Settings | 15% | Complete |
+| M7 — Polish & Accessibility Audit | 15% | Complete |
 
 ## Credits
 
 - Validation patterns adapted from the assignment's starter examples.
 - [ALU](https://www.alueducation.com/) for colour and branding inspiration.
 - [Luma](https://luma.com/) for event-discovery layout inspiration.
-- [Hugeicons](https://github.com/hugeicons/hugeicons) free SVG icons for administration actions. MIT license included in `assets/hugeicons-LICENSE.txt`.
+- [Hugeicons](https://github.com/hugeicons/hugeicons) for the form close icon. MIT license included in `assets/hugeicons-LICENSE.txt`.
 - Montserrat from Google Fonts.
 
 ## Contact
 
 Ismail — n.ismael@alustudent.com
-
-## Submission requirements remaining
-
-- Complete the required functionality and assertion tests.
-- Deploy to GitHub Pages and confirm public access.
-- Include a 2–3 minute demo video.
-- Confirm that the repository has only the author's GitHub account in its contribution history.
