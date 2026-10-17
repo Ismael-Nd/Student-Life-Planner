@@ -6,9 +6,8 @@ Built with HTML, CSS, and vanilla JavaScript for the **Campus Life Planner** the
 
 ## Links
 
-- [Repository](https://github.com/Ismael-Nd/Student-Life-Planner)
 - GitHub Pages: URL: https://ismael-nd.github.io/Student-Life-Planner/
-- Demo video: coming soon.
+- Demo video: [Campus-Planner](https://www.loom.com/share/1d34a315d51c44a9b9e758882e08f7cd).
 
 ## Pages
 
