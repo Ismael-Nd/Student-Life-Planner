@@ -75,6 +75,11 @@ assets/                Event posters, textures, and icon license
 docs/                  Specification and learning roadmap
 seed.json              Ten demo event records
 tests.html             Validation, search, sorting, and highlighting checks
+index.html             Main dashboard of the events
+settings.html          Setting page for conversion and data extraction and import
+my-events.html         Dashboard statistics
+login.html             Student login page
+organizer-login.html   Admin login page
 ```
 
 
@@ -89,9 +94,6 @@ tests.html             Validation, search, sorting, and highlighting checks
 | Duplicate words | `/\b(\w+)\s+\1\b/i` | Detects `Campus campus` and `Join the the workshop` |
 | Repeated spaces | `/ {2,}/g` | Replaces runs of spaces with one space |
 
-The duplicate-word rule uses a **back-reference** (`\1`) to match the captured word again. Matching is case-insensitive.
-
-Date validation also checks calendar components, so dates such as `2026-02-30` are rejected. Title spaces collapse when the field loses focus and when the form is submitted.
 
 ## Keyboard controls
 
@@ -119,20 +121,6 @@ The first focusable link skips to the main content. Submitting invalid fields mo
 The five application pages were manually checked at 360px, 768px, and 1024px. Keyboard navigation was also checked. A full contrast and screen-reader audit remains pending.
 
 ## Testing
-
-Open `organizer-login.html`, complete the login form, then select **Create event** on the shared dashboard for these manual checks:
-
-1. Enter `90abc` as duration, then change it to `90`. The error appears and clears.
-2. Enter ` Campus Fair` as title. An edge-space error appears.
-3. Enter `Campus campus Fair`. A repeated-word error appears.
-4. Enter `Campus  Fair` and leave the field. It becomes `Campus Fair`.
-5. Enter `Sports2` as category, then change it to `Campus Life`. The error appears and clears.
-6. Clear the date and leave the field, then select a valid date. The error appears and clears.
-7. Submit invalid fields. Errors appear and the first invalid field receives focus.
-8. Complete all required fields and submit. The event appears in Discover. Edit its title and save, then refresh to check persistence. Use Delete and confirm to remove it.
-9. In Settings, export the records and import the exported file. Refresh Discover and confirm the records remain. Try malformed JSON and confirm the error leaves existing records intact.
-10. Change the duration unit in Settings and the time cap in Overview. Refresh and check that both preferences remain saved.
-11. Load demo events twice. Existing events should remain, and the second load should add no duplicate demo records.
 
 Open `tests.html` through Live Server. Its 16 assertions cover validation, calendar dates, case handling, invalid regex, numeric sorting, and safe highlighting. The page shows when execution finishes; inspect the Console for any assertion errors.
 
